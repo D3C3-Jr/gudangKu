@@ -8,7 +8,8 @@
         <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <button class="btn btn-block btn-primary addSupplier">Tambah Data Supplier</button>
+                <button class="btn btn-primary readSupplier">Lihat Data Supplier</button>
+                <button class="btn btn-primary addSupplier" hidden>Tambah Data Supplier</button>
             </div>
             <!-- Card Body -->
             <div class="card-body">
@@ -26,6 +27,8 @@
             dataType: "json",
             success: function(response) {
                 $('.viewDataSupplier').html(response.data);
+                $('.addSupplier').removeAttr("hidden");
+                $('.readSupplier').html('<i class="fa fa-arrows-rotate"></i>');
             },
             error: function(xhr, ajaxOptions, thrownError) {
                 alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
@@ -34,20 +37,18 @@
     }
 
     function addSupplier() {
-        $('.addSupplier').click(function(e) {
-            e.preventDefault();
-            $.ajax({
-                url: "<?= site_url('supplier/addSupplier'); ?>",
-                dataType: "json",
-                success: function(response) {
-                    $('.addModal').html(response.data).show();
-                    $('#addModal').modal('show');
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
-                }
-            });
-        })
+
+        $.ajax({
+            url: "<?= site_url('supplier/addSupplier'); ?>",
+            dataType: "json",
+            success: function(response) {
+                $('.addModal').html(response.data).show();
+                $('#addModal').modal('show');
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+            }
+        });
     }
 </script>
 

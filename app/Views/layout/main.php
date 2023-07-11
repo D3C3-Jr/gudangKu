@@ -22,6 +22,10 @@
     <!-- Sweetalert -->
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.10/dist/sweetalert2.min.css" rel="stylesheet">
 
+    <!-- Bootstrap core JavaScript-->
+    <script src="<?= base_url() ?>assets/vendor/jquery/jquery.min.js"></script>
+    <script src="<?= base_url() ?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 </head>
 
 <body id="page-top">
@@ -140,9 +144,7 @@
         </div>
     </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="<?= base_url() ?>assets/vendor/jquery/jquery.min.js"></script>
-    <script src="<?= base_url() ?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 
     <!-- Core plugin JavaScript-->
     <script src="<?= base_url() ?>assets/vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -157,11 +159,18 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.10/dist/sweetalert2.all.min.js"></script>
 
     <script>
-        $(document).ready(function() {
+        $('.addBarang').click(function() {
+            addBarang();
+        });
+        $('.readBarang').click(function() {
             readBarang();
+        });
+        $('.readSupplier').click(function() {
             readSuppliers();
+        });
+        $('.addSupplier').click(function() {
             addSupplier();
-        })
+        });
     </script>
 
 </body>
