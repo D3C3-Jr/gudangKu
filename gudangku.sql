@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 03, 2023 at 11:21 AM
+-- Generation Time: Jul 11, 2023 at 10:56 AM
 -- Server version: 10.4.28-MariaDB
--- PHP Version: 8.0.28
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,46 +24,47 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `suppliers`
+-- Table structure for table `barang`
 --
 
-CREATE TABLE `suppliers` (
-  `id_supplier` int(11) NOT NULL,
-  `kode_supplier` varchar(20) NOT NULL,
-  `nama_supplier` varchar(100) NOT NULL,
-  `jenis_supplier` varchar(100) NOT NULL,
+CREATE TABLE `barang` (
+  `id_barang` int(11) NOT NULL,
+  `kode_barang` varchar(100) NOT NULL,
+  `nama_barang` varchar(100) NOT NULL,
+  `jenis_barang` varchar(50) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `deleted_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `suppliers`
+-- Dumping data for table `barang`
 --
 
-INSERT INTO `suppliers` (`id_supplier`, `kode_supplier`, `nama_supplier`, `jenis_supplier`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'SUP00001', 'MONOTARO', 'Barang', '2023-07-03 22:21:21', '2023-07-03 22:21:21', '0000-00-00 00:00:00'),
-(2, 'SUP00002', 'SANGGA BUANA BERKAH', 'Barang & Jasa', '2023-07-03 22:26:38', '2023-07-03 22:26:38', '0000-00-00 00:00:00');
+INSERT INTO `barang` (`id_barang`, `kode_barang`, `nama_barang`, `jenis_barang`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'BAR00001', 'Tinta Epson 003 Black', 'Tinta', '2023-07-10 06:33:30', '2023-07-10 06:33:30', '2023-07-10 06:33:30'),
+(2, 'BAR00002', 'Tinta Epson 003 Cyan', 'Jadi', '2023-07-11 03:23:23', '2023-07-11 03:23:23', '0000-00-00 00:00:00'),
+(3, 'BAR00003', 'Tinta Epson 003 Yellow', 'Jadi', '2023-07-11 08:23:26', '2023-07-11 08:23:26', '0000-00-00 00:00:00');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `suppliers`
+-- Indexes for table `barang`
 --
-ALTER TABLE `suppliers`
-  ADD PRIMARY KEY (`id_supplier`);
+ALTER TABLE `barang`
+  ADD PRIMARY KEY (`id_barang`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `suppliers`
+-- AUTO_INCREMENT for table `barang`
 --
-ALTER TABLE `suppliers`
-  MODIFY `id_supplier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `barang`
+  MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
