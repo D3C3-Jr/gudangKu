@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 12, 2023 at 05:13 AM
+-- Generation Time: Jul 12, 2023 at 06:12 AM
 -- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -62,6 +62,25 @@ CREATE TABLE `barang_keluar` (
   `deleted_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `barang_keluar`
+--
+
+INSERT INTO `barang_keluar` (`id_barang_keluar`, `id_barang`, `tanggal`, `jumlah`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, '2023-07-11 21:10:39', 50, '2023-07-12 06:10:39', '2023-07-12 06:10:39', '2023-07-12 06:10:39');
+
+--
+-- Triggers `barang_keluar`
+--
+DELIMITER $$
+CREATE TRIGGER `persediaan_after_out` AFTER INSERT ON `barang_keluar` FOR EACH ROW UPDATE persediaan  
+SET 
+  jumlah = jumlah-NEW.jumlah
+WHERE 
+  id_barang = NEW.id_barang
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -78,6 +97,26 @@ CREATE TABLE `barang_masuk` (
   `deleted_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `barang_masuk`
+--
+
+INSERT INTO `barang_masuk` (`id_barang_masuk`, `id_barang`, `tanggal`, `jumlah`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(2, 1, '2023-07-11 21:01:18', 100, '2023-07-12 06:01:18', '2023-07-12 06:01:18', '2023-07-12 06:01:18'),
+(3, 1, '2023-07-11 21:07:14', 100, '2023-07-12 06:07:14', '2023-07-12 06:07:14', '2023-07-12 06:07:14');
+
+--
+-- Triggers `barang_masuk`
+--
+DELIMITER $$
+CREATE TRIGGER `persediaan_after_in` AFTER INSERT ON `barang_masuk` FOR EACH ROW UPDATE persediaan  
+SET 
+  jumlah = jumlah+NEW.jumlah
+WHERE 
+  id_barang = NEW.id_barang
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -86,14 +125,20 @@ CREATE TABLE `barang_masuk` (
 
 CREATE TABLE `persediaan` (
   `id_barang` int(11) NOT NULL,
-  `stok_awal` int(11) NOT NULL,
-  `stok_tersedia` int(11) NOT NULL,
-  `masuk` datetime NOT NULL,
-  `keluar` datetime NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `tanggal_masuk` datetime NOT NULL,
+  `tanggal_keluar` datetime NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `deleted_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `persediaan`
+--
+
+INSERT INTO `persediaan` (`id_barang`, `jumlah`, `tanggal_masuk`, `tanggal_keluar`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 150, '2023-07-11 21:06:09', '2023-07-12 06:06:09', '2023-07-12 06:06:09', '2023-07-12 06:06:09', '2023-07-12 06:06:09');
 
 -- --------------------------------------------------------
 
@@ -166,13 +211,13 @@ ALTER TABLE `barang`
 -- AUTO_INCREMENT for table `barang_keluar`
 --
 ALTER TABLE `barang_keluar`
-  MODIFY `id_barang_keluar` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_barang_keluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `barang_masuk`
 --
 ALTER TABLE `barang_masuk`
-  MODIFY `id_barang_masuk` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_barang_masuk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `suppliers`
