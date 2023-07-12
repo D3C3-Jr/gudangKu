@@ -171,6 +171,9 @@
         $('.addSupplier').click(function() {
             addSupplier();
         });
+        $('.readBarangMasuk').click(function() {
+            readBarangMasuk();
+        });
     </script>
 
 </body>

@@ -34,7 +34,7 @@
     </li>
 
     <li class="nav-item <?= $title == 'Data Barang Masuk' ? 'active' : '' ?>"">
-        <a class=" nav-link" href="<?= base_url('/barang'); ?>">
+        <a class=" nav-link" href="<?= base_url('/barangMasuk'); ?>">
         <i class="fas fa-fw fa-download"></i>
         <span>Barang Masuk</span>
         </a>
