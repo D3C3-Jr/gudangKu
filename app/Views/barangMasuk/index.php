@@ -36,14 +36,14 @@
         });
     };
 
-    function addBarang() {
+    function addBarangMasuk() {
 
         $.ajax({
-            url: "<?= site_url('barang/addBarang'); ?>",
+            url: "<?= site_url('barangMasuk/addBarangMasuk'); ?>",
             dataType: "json",
             success: function(response) {
-                $('.addModalBarang').html(response.data).show();
-                $('#addModalBarang').modal('show');
+                $('.addModalBarangMasuk').html(response.data).show();
+                $('#addModalBarangMasuk').modal('show');
             },
             error: function(xhr, ajaxOptions, thrownError) {
                 alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);

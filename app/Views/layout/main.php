@@ -174,6 +174,9 @@
         $('.readBarangMasuk').click(function() {
             readBarangMasuk();
         });
+        $('.addBarangMasuk').click(function() {
+            addBarangMasuk();
+        });
     </script>
 
 </body>

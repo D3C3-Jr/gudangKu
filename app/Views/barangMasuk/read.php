@@ -1,9 +1,13 @@
 <div class="table-responsive">
+    <?= $kodeOtomatis ?>
     <table class="table table-hover table-striped table-sm" id="dataTable" width="100%" cellspacing="0" style="font-size: small;">
         <thead>
             <tr>
                 <th>No</th>
-                <th>ID Barang</th>
+                <th>Kode Transaksi</th>
+                <th>Kode Barang</th>
+                <th>Nama Barang</th>
+                <th>Jenis Barang</th>
                 <th>Tanggal</th>
                 <th>Jumlah</th>
                 <th>Action</th>
@@ -14,7 +18,10 @@
             foreach ($barangMasuks as $barangMasuk) : ?>
                 <tr>
                     <td><?= $no++ ?></td>
-                    <td><?= $barangMasuk['id_barang'] ?></td>
+                    <td><?= $barangMasuk['kode_barang_masuk'] ?></td>
+                    <td><?= $barangMasuk['kode_barang'] ?></td>
+                    <td><?= $barangMasuk['nama_barang'] ?></td>
+                    <td><?= $barangMasuk['jenis_barang'] ?></td>
                     <td><?= $barangMasuk['tanggal'] ?></td>
                     <td><?= $barangMasuk['jumlah'] ?></td>
                     <td>
