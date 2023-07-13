@@ -4,10 +4,12 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\BarangModel;
+use App\Models\SupplierModel;
 
 class BarangController extends BaseController
 {
     protected $BarangModel;
+    protected $SupplierModel;
 
     public function index()
     {
@@ -23,7 +25,7 @@ class BarangController extends BaseController
             $BarangModel = new BarangModel();
             $data = [
                 'title' => 'Data Barang',
-                'barangs' => $BarangModel->findAll()
+                'barangs' => $BarangModel->getBarang()
             ];
             $msg = [
                 'data' => view('barang/read', $data)
@@ -36,9 +38,13 @@ class BarangController extends BaseController
 
     public function addBarang()
     {
+        $SupplierModel = new SupplierModel();
         if ($this->request->isAJAX()) {
+            $datas = [
+                'suppliers' => $SupplierModel->findAll()
+            ];
             $msg = [
-                'data' => view('barang/add')
+                'data' => view('barang/add', $datas)
             ];
             echo json_encode($msg);
         } else {
@@ -79,6 +85,7 @@ class BarangController extends BaseController
             } else {
                 $save = [
                     'kode_barang' => $this->request->getVar('kode_barang'),
+                    'id_supplier' => $this->request->getVar('id_supplier'),
                     'nama_barang' => $this->request->getVar('nama_barang'),
                     'jenis_barang' => $this->request->getVar('jenis_barang'),
                 ];

@@ -2,8 +2,9 @@
     <table class="table table-hover table-striped table-sm" id="dataTable" width="100%" cellspacing="0" style="font-size: small;">
         <thead>
             <tr>
-                <th>No</th>
+                <th width="5px">No</th>
                 <th>Kode Barang</th>
+                <th>Supplier</th>
                 <th>Nama Barang</th>
                 <th>Jenis Barang</th>
                 <th>Action</th>
@@ -13,8 +14,9 @@
             <?php $no = 1;
             foreach ($barangs as $barang) : ?>
                 <tr>
-                    <td><?= $no++ ?></td>
+                    <td width="5px"><?= $no++ ?></td>
                     <td><?= $barang['kode_barang'] ?></td>
+                    <td><?= $barang['nama_supplier'] ?></td>
                     <td><?= $barang['nama_barang'] ?></td>
                     <td><?= $barang['jenis_barang'] ?></td>
                     <td>

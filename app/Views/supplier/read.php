@@ -1,8 +1,8 @@
 <div class="table-responsive">
-    <table class="table table-hover table-striped table-sm" id="dataTable" width="100%" cellspacing="0" style="font-size: small;">
+    <table class="table table-hover table-striped table-bordered table-sm" id="dataTable" width="100%" cellspacing="0" style="font-size: small;">
         <thead>
             <tr>
-                <th>No</th>
+                <th width="5px">No</th>
                 <th>Kode Supplier</th>
                 <th>Nama Supplier</th>
                 <th>Alamat</th>
@@ -17,7 +17,7 @@
             <?php $no = 1;
             foreach ($suppliers as $supplier) : ?>
                 <tr>
-                    <td><?= $no++ ?></td>
+                    <td width="5px"><?= $no++ ?></td>
                     <td><?= $supplier['kode_supplier'] ?></td>
                     <td><?= $supplier['nama_supplier'] ?></td>
                     <td><?= $supplier['alamat'] ?></td>

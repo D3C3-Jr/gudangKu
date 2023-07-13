@@ -13,7 +13,7 @@ class BarangModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['kode_barang', 'nama_barang', 'jenis_barang'];
+    protected $allowedFields    = ['kode_barang', 'id_supplier', 'nama_barang', 'jenis_barang'];
 
     // Dates
     protected $useTimestamps = true;
@@ -38,4 +38,11 @@ class BarangModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function getBarang()
+    {
+        $BarangModel = new BarangModel();
+        $data = $BarangModel->join('suppliers', 'barang.id_supplier = suppliers.id_supplier', 'left')->find();
+        return $data;
+    }
 }

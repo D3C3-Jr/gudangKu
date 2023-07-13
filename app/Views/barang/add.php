@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="addModalBarang" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="addModalBarang" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -18,6 +18,18 @@
                         <!-- ERROR FEEDBACK -->
                         <div id="error_kode_barang" class="invalid-feedback error_kode_barang">
                         </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="id_supplier" class="col-sm-2 col-form-label col-form-label-sm">Supplier</label>
+                    <div class="col-sm-10">
+                        <select class="form-control form-control-sm" style="width: 100%;" name="id_supplier" id="id_supplier">
+                            <option selected hidden>Pilih Supplier</option>
+                            <?php foreach ($suppliers as $supplier) : ?>
+                                <option value="<?= $supplier['id_supplier'] ?>"><?= $supplier['kode_supplier'] ?> | <?= $supplier['nama_supplier'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
                 </div>
 
@@ -54,6 +66,7 @@
 
 <script>
     $(document).ready(function() {
+        $('#id_supplier').select2();
         $('.saveBarang').submit(function(e) {
             e.preventDefault();
             $.ajax({
