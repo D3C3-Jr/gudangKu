@@ -12,9 +12,9 @@
             <div class="modal-body">
 
                 <div class="form-group row">
-                    <label for="kode_barang_masuk" class="col-sm-2 col-form-label col-form-label-sm">Kode</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="kode_barang_masuk" class="form-control form-control-sm" id="kode_barang_masuk" placeholder="Kode Barang Masuk">
+                    <label for="kode_barang_masuk" class="col-sm-3 col-form-label col-form-label-sm">Kode Transaksi</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="kode_barang_masuk" class="form-control form-control-sm" id="kode_barang_masuk" value="<?= date('YmdHis') ?>" readonly>
                         <!-- ERROR FEEDBACK -->
                         <div id="error_kode_barang_masuk" class="invalid-feedback error_kode_barang_masuk">
                         </div>
@@ -22,26 +22,38 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="nama_barang" class="col-sm-2 col-form-label col-form-label-sm">Nama</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="nama_barang" class="form-control form-control-sm" id="nama_barang" placeholder="Nama barang">
+                    <label for="id_barang" class="col-sm-3 col-form-label col-form-label-sm">Kode Barang</label>
+                    <div class="col-sm-9">
+                        <select class="form-control form-control-sm" name="id_barang" id="id_barang">
+                            <option selected hidden>Pilih Barang</option>
+                            <?php foreach ($barangs as $barang) : ?>
+                                <option value="<?= $barang['id_barang'] ?>"><?= $barang['kode_barang'] ?>|<?= $barang['nama_barang'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="jumlah" class="col-sm-3 col-form-label col-form-label-sm">Jumlah</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="jumlah" class="form-control form-control-sm" id="jumlah" placeholder="Jumlah">
                         <!-- ERROR FEEDBACK -->
-                        <div id="error_nama_barang" class="invalid-feedback error_nama_barang">
+                        <div id="error_jumlah" class="invalid-feedback error_jumlah">
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label for="jenis_barang" class="col-sm-2 col-form-label col-form-label-sm">Jenis</label>
-                    <div class="col-sm-10">
-                        <select class="form-control form-control-sm" name="jenis_barang" id="jenis_barang">
-                            <option selected hidden>Pilih Jenis Barang</option>
-                            <option value="Mentah">Mentah</option>
-                            <option value="Setengah Jadi">Setengah Jadi</option>
-                            <option value="Jadi">Jadi</option>
-                        </select>
+                    <label for="tanggal" class="col-sm-3 col-form-label col-form-label-sm">Tanggal</label>
+                    <div class="col-sm-9">
+                        <input type="date" name="tanggal" class="form-control form-control-sm" id="tanggal" placeholder="Tanggal">
+                        <!-- ERROR FEEDBACK -->
+                        <div id="error_tanggal" class="invalid-feedback error_tanggal">
+                        </div>
                     </div>
                 </div>
+
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -54,7 +66,7 @@
 
 <script>
     $(document).ready(function() {
-        $('.saveBarang').submit(function(e) {
+        $('.saveBarangMasuk').submit(function(e) {
             e.preventDefault();
             $.ajax({
                 type: "post",
@@ -71,20 +83,12 @@
                 },
                 success: function(response) {
                     if (response.error) {
-                        if (response.error.kode_barang) {
-                            $('#kode_barang').addClass('is-invalid');
-                            $('.error_kode_barang').html(response.error.kode_barang);
+                        if (response.error.id_barang) {
+                            $('#id_barang').addClass('is-invalid');
+                            $('.error_id_barang').html(response.error.id_barang);
                         } else {
-                            $('#kode_barang').removeClass('is-invalid');
-                            $('.error_kode_barang').html();
-                        }
-
-                        if (response.error.nama_barang) {
-                            $('#nama_barang').addClass('is-invalid');
-                            $('.error_nama_barang').html(response.error.nama_barang);
-                        } else {
-                            $('#nama_barang').removeClass('is-invalid');
-                            $('.error_nama_barang').html();
+                            $('#id_barang').removeClass('is-invalid');
+                            $('.error_id_barang').html();
                         }
 
                     } else {
@@ -94,8 +98,8 @@
                             text: response.success,
                         });
 
-                        $('#addModalBarang').modal('hide');
-                        readBarang();
+                        $('#addModalBarangMasuk').modal('hide');
+                        readBarangMasuk();
                     }
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
