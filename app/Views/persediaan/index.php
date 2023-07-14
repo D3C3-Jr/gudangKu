@@ -8,8 +8,8 @@
         <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <button class="btn btn-primary readPersediaan">Lihat Data Persediaan</button>
-                <button class="btn btn-primary addPersediaan" hidden>Tambah Data Persediaan</button>
+                <button class="btn btn-primary readPersediaan">Lihat Data</button>
+                <button class="btn btn-primary addPersediaan" hidden>Tambah Data</button>
             </div>
             <!-- Card Body -->
             <div class="card-body">

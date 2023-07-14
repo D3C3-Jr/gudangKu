@@ -15,7 +15,7 @@ class BarangKeluarController extends BaseController
     public function index()
     {
         $datas = [
-            'title' => 'Data Barang keluar',
+            'title' => 'Data Barang Keluar',
         ];
         return view('barangKeluar/index', $datas);
     }

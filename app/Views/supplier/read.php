@@ -10,7 +10,7 @@
                 <th>No Telp</th>
                 <th>Email</th>
                 <th>Jenis Supplier</th>
-                <th>Action</th>
+                <th width="55px">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -25,7 +25,7 @@
                     <td><?= $supplier['telp'] ?></td>
                     <td><?= $supplier['email'] ?></td>
                     <td><?= $supplier['jenis_supplier'] ?></td>
-                    <td>
+                    <td width="55px">
                         <a href="" class="btn btn-circle btn-sm btn-primary"><i class="fas fa-edit"></i></a>
                         <a href="" class="btn btn-circle btn-sm btn-danger"><i class="fas fa-trash"></i></a>
                     </td>

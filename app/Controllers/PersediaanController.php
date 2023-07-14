@@ -12,7 +12,7 @@ class PersediaanController extends BaseController
     public function index()
     {
         $datas = [
-            'title' => 'Data Persediaan Persediaan'
+            'title' => 'Data Persediaan'
         ];
         return view('persediaan/index', $datas);
     }

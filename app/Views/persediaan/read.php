@@ -16,7 +16,7 @@
                     <td><?= $no++ ?></td>
                     <td><?= $persediaan['kode_barang'] ?></td>
                     <td><?= $persediaan['nama_barang'] ?></td>
-                    <td <?php if ($persediaan['jumlah'] > 50) : ?> style="background-color: yellow;" <?php endif ?>><?= $persediaan['jumlah'] ?></td>
+                    <td><?= $persediaan['jumlah'] ?></td>
                     <td>
                         <a href="" class="btn btn-circle btn-sm btn-primary"><i class="fas fa-edit"></i></a>
                         <a href="" class="btn btn-circle btn-sm btn-danger"><i class="fas fa-trash"></i></a>
