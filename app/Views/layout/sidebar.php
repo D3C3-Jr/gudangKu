@@ -26,31 +26,31 @@
         </a>
     </li>
 
-    <li class="nav-item <?= $title == 'Data Barang' ? 'active' : '' ?>"">
+    <li class="nav-item <?= $title == 'Data Barang' ? 'active' : '' ?>">
         <a class=" nav-link" href="<?= base_url('/barang'); ?>">
-        <i class="fas fa-fw fa-list"></i>
-        <span>Barang</span>
+            <i class="fas fa-fw fa-list"></i>
+            <span>Barang</span>
         </a>
     </li>
 
-    <li class="nav-item <?= $title == 'Data Barang Masuk' ? 'active' : '' ?>"">
+    <li class="nav-item <?= $title == 'Data Barang Masuk' ? 'active' : '' ?>">
         <a class=" nav-link" href="<?= base_url('/barangMasuk'); ?>">
-        <i class="fas fa-fw fa-download"></i>
-        <span>Barang Masuk</span>
+            <i class="fas fa-fw fa-download"></i>
+            <span>Barang Masuk</span>
         </a>
     </li>
 
-    <li class="nav-item <?= $title == 'Data Barang Keluar' ? 'active' : '' ?>"">
+    <li class="nav-item <?= $title == 'Data Barang Keluar' ? 'active' : '' ?>">
         <a class=" nav-link" href="<?= base_url('/barangKeluar'); ?>">
-        <i class="fas fa-fw fa-upload"></i>
-        <span>Barang Keluar</span>
+            <i class="fas fa-fw fa-upload"></i>
+            <span>Barang Keluar</span>
         </a>
     </li>
 
-    <li class="nav-item <?= $title == 'Data Persediaan' ? 'active' : '' ?>"">
+    <li class="nav-item <?= $title == 'Data Persediaan' ? 'active' : '' ?>">
         <a class=" nav-link" href="<?= base_url('/persediaan'); ?>">
-        <i class="fas fa-fw fa-upload"></i>
-        <span>Persediaan</span>
+            <i class="fas fa-fw fa-boxes-stacked"></i>
+            <span>Persediaan</span>
         </a>
     </li>
 
