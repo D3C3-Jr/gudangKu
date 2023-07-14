@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Data</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -25,7 +25,7 @@
                     <label for="id_supplier" class="col-sm-2 col-form-label col-form-label-sm">Supplier</label>
                     <div class="col-sm-10">
                         <select class="form-control form-control-sm" style="width: 100%;" name="id_supplier" id="id_supplier">
-                            <option selected hidden>Pilih Supplier</option>
+                            <option selected hidden disabled>Pilih Supplier</option>
                             <?php foreach ($suppliers as $supplier) : ?>
                                 <option value="<?= $supplier['id_supplier'] ?>"><?= $supplier['kode_supplier'] ?> | <?= $supplier['nama_supplier'] ?></option>
                             <?php endforeach; ?>
@@ -56,8 +56,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary btnSave">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                <button type="submit" class="btn btn-primary btnSave">Simpan</button>
             </div>
             <?= form_close() ?>
         </div>

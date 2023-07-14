@@ -172,17 +172,33 @@
         $('.readBarang').click(function() {
             readBarang();
         });
+
         $('.readSupplier').click(function() {
             readSuppliers();
         });
         $('.addSupplier').click(function() {
             addSupplier();
         });
+
         $('.readBarangMasuk').click(function() {
             readBarangMasuk();
         });
         $('.addBarangMasuk').click(function() {
             addBarangMasuk();
+        });
+
+        $('.readBarangKeluar').click(function() {
+            readBarangKeluar();
+        });
+        $('.addBarangKeluar').click(function() {
+            addBarangKeluar();
+        });
+
+        $('.readPersediaan').click(function() {
+            readPersediaan();
+        });
+        $('.addPersediaan').click(function() {
+            addPersediaan();
         });
     </script>
 

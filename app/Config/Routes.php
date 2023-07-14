@@ -45,6 +45,16 @@ $routes->get('/barangMasuk', 'BarangMasukController::index');
 $routes->get('/barangMasuk/readBarangMasuk', 'BarangMasukController::readBarangMasuk');
 $routes->get('/barangMasuk/addBarangMasuk', 'BarangMasukController::addBarangMasuk');
 $routes->post('/barangMasuk/saveBarangMasuk', 'BarangMasukController::saveBarangMasuk');
+
+$routes->get('/barangKeluar', 'BarangKeluarController::index');
+$routes->get('/barangKeluar/readBarangKeluar', 'BarangKeluarController::readBarangKeluar');
+$routes->get('/barangKeluar/addBarangKeluar', 'BarangKeluarController::addBarangKeluar');
+$routes->post('/barangKeluar/saveBarangKeluar', 'BarangKeluarController::saveBarangKeluar');
+
+$routes->get('/persediaan', 'PersediaanController::index');
+$routes->get('/persediaan/readPersediaan', 'PersediaanController::readPersediaan');
+$routes->get('/persediaan/addPersediaan', 'PersediaanController::addPersediaan');
+$routes->post('/persediaan/savePersediaan', 'PersediaanController::savePersediaan');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

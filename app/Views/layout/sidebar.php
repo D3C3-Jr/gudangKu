@@ -41,9 +41,16 @@
     </li>
 
     <li class="nav-item <?= $title == 'Data Barang Keluar' ? 'active' : '' ?>"">
-        <a class=" nav-link" href="<?= base_url('/barang'); ?>">
+        <a class=" nav-link" href="<?= base_url('/barangKeluar'); ?>">
         <i class="fas fa-fw fa-upload"></i>
         <span>Barang Keluar</span>
+        </a>
+    </li>
+
+    <li class="nav-item <?= $title == 'Data Persediaan' ? 'active' : '' ?>"">
+        <a class=" nav-link" href="<?= base_url('/persediaan'); ?>">
+        <i class="fas fa-fw fa-upload"></i>
+        <span>Persediaan</span>
         </a>
     </li>
 
