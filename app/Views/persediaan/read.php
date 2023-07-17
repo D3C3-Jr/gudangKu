@@ -1,6 +1,6 @@
 <div class="table-responsive">
-    <table class="table table-hover table-striped table-sm" id="dataTable" width="100%" cellspacing="0" style="font-size: small;">
-        <thead>
+    <table class="table table-hover table-bordered table-sm" id="dataTable" width="100%" cellspacing="0" style="font-size: small;">
+        <thead style="background-color: grey;color:white">
             <tr>
                 <th>No</th>
                 <th>Kode Barang</th>
@@ -30,7 +30,45 @@
 <script>
     $(document).ready(function() {
         $('#dataTable').DataTable({
+            fixedHeader: {
+                header: true,
+                footer: true
+            },
+            dom: 'Bfrtip',
+            buttons: [{
+                    extend: 'excel',
+                    text: '<i class="far fa-file-excel" aria-hidden="true"></i> Excel Export',
+                    filename: 'Persediaan',
+                    title: 'Data Persediaan',
+                    exportOptions: {
+                        modifier: {
+                            search: 'applied',
+                            order: 'applied',
+                            page: 'current'
+                        },
+                        columns: [0, 1, 2, 3]
+                    }
+                },
+                {
+                    extend: 'print',
+                    text: '<i class="fas fa-print" aria-hidden="true"></i> Print',
+                    filename: 'Persediaan',
+                    title: 'Data Persediaan',
+                    exportOptions: {
+                        modifier: {
+                            search: 'applied',
+                            order: 'applied',
+                            page: 'current'
+                        },
+                        columns: [0, 1, 2, 3]
+                    }
+                },
+            ],
             responsive: true,
+            paging: false,
+            scrollCollapse: true,
+            scrollX: true,
+            scrollY: 400
         });
-    })
+    });
 </script>
