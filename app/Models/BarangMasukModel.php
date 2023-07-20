@@ -42,7 +42,7 @@ class BarangMasukModel extends Model
     public function getBarangMasuk()
     {
         $BarangMasukModel = new BarangMasukModel();
-        $data = $BarangMasukModel->join('barang', 'barang_masuk.id_barang = barang.id_barang', 'left')->find();
+        $data = $BarangMasukModel->join('barang', 'barang_masuk.id_barang = barang.id_barang', 'left')->orderBy('id_barang_masuk', 'DESC')->find();
         return $data;
     }
 }

@@ -5,12 +5,14 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\BarangKeluarModel;
 use App\Models\BarangModel;
+use App\Models\PersediaanModel;
 
 class BarangKeluarController extends BaseController
 {
 
     protected $BarangKeluarModel;
     protected $BarangModel;
+    protected $PersediaanModel;
 
     public function index()
     {
@@ -43,8 +45,10 @@ class BarangKeluarController extends BaseController
         if ($this->request->isAJAX()) {
             date_default_timezone_set('Asia/Jakarta');
             $BarangModel = new BarangModel();
+            $PersediaanModel = new PersediaanModel();
             $datas = [
-                'barangs' => $BarangModel->findAll()
+                'barangs' => $BarangModel->findAll(),
+                'persediaans' => $PersediaanModel->findAll(),
             ];
             $msg = [
                 'data' => view('barangKeluar/add', $datas)
@@ -61,11 +65,12 @@ class BarangKeluarController extends BaseController
             $validation = \Config\Services::validation();
             $valid = $this->validate([
 
-                'id_barang' => [
-                    'label' => 'Kode Barang',
-                    'rules' => 'required',
+                'jumlah' => [
+                    'label' => 'Jumlah',
+                    'rules' => 'required|numeric',
                     'errors' => [
                         'required' => '{field} Harus diisi',
+                        'numeric' => 'Masukkan jumlah yang sesuai'
                     ]
                 ],
 
@@ -73,7 +78,7 @@ class BarangKeluarController extends BaseController
             if (!$valid) {
                 $msg = [
                     'error' => [
-                        'id_barang' => $validation->getError('id_barang'),
+                        'jumlah' => $validation->getError('jumlah'),
                     ]
                 ];
             } else {

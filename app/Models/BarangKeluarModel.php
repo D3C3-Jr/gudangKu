@@ -42,7 +42,7 @@ class BarangKeluarModel extends Model
     public function getBarangKeluar()
     {
         $BarangKeluarModel = new BarangKeluarModel();
-        $data = $BarangKeluarModel->join('barang', 'barang_keluar.id_barang = barang.id_barang', 'left')->find();
+        $data = $BarangKeluarModel->join('barang', 'barang_keluar.id_barang = barang.id_barang', 'left')->orderBy('id_barang_keluar', 'DESC')->find();
         return $data;
     }
 }

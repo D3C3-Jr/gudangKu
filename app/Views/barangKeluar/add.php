@@ -37,7 +37,10 @@
                     <label for="jumlah" class="col-sm-3 col-form-label col-form-label-sm">Jumlah</label>
                     <div class="col-sm-9">
                         <input type="text" name="jumlah" class="form-control form-control-sm" id="jumlah" placeholder="Jumlah">
-                        <!-- ERROR FEEDBACK -->
+
+                        <?php foreach ($persediaans as $persediaan) : ?>
+                            <small style="font-weight: bold;">Stok Tersedia <?= $persediaan['jumlah'] ?></small>
+                        <?php endforeach; ?><!-- ERROR FEEDBACK -->
                         <div id="error_jumlah" class="invalid-feedback error_jumlah">
                         </div>
                     </div>
@@ -83,12 +86,12 @@
                 },
                 success: function(response) {
                     if (response.error) {
-                        if (response.error.id_barang) {
-                            $('#id_barang').addClass('is-invalid');
-                            $('.error_id_barang').html(response.error.id_barang);
+                        if (response.error.jumlah) {
+                            $('#jumlah').addClass('is-invalid');
+                            $('.error_jumlah').html(response.error.jumlah);
                         } else {
-                            $('#id_barang').removeClass('is-invalid');
-                            $('.error_id_barang').html();
+                            $('#jumlah').removeClass('is-invalid');
+                            $('.error_jumlah').html();
                         }
 
                     } else {
