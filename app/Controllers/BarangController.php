@@ -38,6 +38,7 @@ class BarangController extends BaseController
 
     public function addBarang()
     {
+        date_default_timezone_set('Asia/Jakarta');
         $SupplierModel = new SupplierModel();
         if ($this->request->isAJAX()) {
             $datas = [

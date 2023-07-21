@@ -5,11 +5,13 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\BarangMasukModel;
 use App\Models\BarangModel;
+use App\Models\SupplierModel;
 
 class BarangMasukController extends BaseController
 {
     protected $BarangMasukModel;
     protected $BarangModel;
+    protected $SupplierModel;
 
     public function index()
     {
@@ -27,6 +29,7 @@ class BarangMasukController extends BaseController
             $data = [
                 'title' => 'Data Barang Masuk',
                 'barangMasuks' => $BarangMasukModel->getBarangMasuk(),
+
             ];
             $msg = [
                 'data' => view('barangMasuk/read', $data)
@@ -42,8 +45,10 @@ class BarangMasukController extends BaseController
         if ($this->request->isAJAX()) {
             date_default_timezone_set('Asia/Jakarta');
             $BarangModel = new BarangModel();
+            $SupplierModel = new SupplierModel();
             $datas = [
-                'barangs' => $BarangModel->findAll()
+                'barangs' => $BarangModel->findAll(),
+                'suppliers' => $SupplierModel->findAll(),
             ];
             $msg = [
                 'data' => view('barangMasuk/add', $datas)
@@ -60,8 +65,33 @@ class BarangMasukController extends BaseController
             $validation = \Config\Services::validation();
             $valid = $this->validate([
 
+                'jumlah' => [
+                    'label' => 'Jumlah',
+                    'rules' => 'required|numeric',
+                    'errors' => [
+                        'required' => '{field} Harus diisi',
+                        'numeric' => '{field} Harus angka'
+                    ]
+                ],
+
                 'id_barang' => [
-                    'label' => 'Kode Barang',
+                    'label' => 'Barang',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} Harus diisi',
+                    ]
+                ],
+
+                'tanggal' => [
+                    'label' => 'Tanggal',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} Harus diisi',
+                    ]
+                ],
+
+                'id_supplier' => [
+                    'label' => 'Supplier',
                     'rules' => 'required',
                     'errors' => [
                         'required' => '{field} Harus diisi',
@@ -72,7 +102,10 @@ class BarangMasukController extends BaseController
             if (!$valid) {
                 $msg = [
                     'error' => [
+                        'jumlah' => $validation->getError('jumlah'),
                         'id_barang' => $validation->getError('id_barang'),
+                        'tanggal' => $validation->getError('tanggal'),
+                        'id_supplier' => $validation->getError('id_supplier'),
                     ]
                 ];
             } else {
@@ -81,6 +114,7 @@ class BarangMasukController extends BaseController
                     'id_barang' => $this->request->getVar('id_barang'),
                     'jumlah' => $this->request->getVar('jumlah'),
                     'tanggal' => $this->request->getVar('tanggal'),
+                    'id_supplier' => $this->request->getVar('id_supplier'),
                 ];
                 $barang = new BarangMasukModel();
                 $barang->insert($save);

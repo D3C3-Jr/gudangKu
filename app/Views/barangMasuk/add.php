@@ -22,21 +22,37 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="id_barang" class="col-sm-3 col-form-label col-form-label-sm">Kode Barang</label>
+                    <label for="id_supplier" class="col-sm-3 col-form-label col-form-label-sm"><b>Supplier*</b></label>
                     <div class="col-sm-9">
-                        <select class="form-control form-control-sm" name="id_barang" id="id_barang">
-                            <option selected hidden>Pilih Barang</option>
-                            <?php foreach ($barangs as $barang) : ?>
-                                <option value="<?= $barang['id_barang'] ?>"><?= $barang['kode_barang'] ?>|<?= $barang['nama_barang'] ?></option>
+                        <select class="form-control form-control-sm" style="width: 100%;" name="id_supplier" id="id_supplier">
+                            <option selected hidden disabled>Pilih Supplier</option>
+                            <?php foreach ($suppliers as $supplier) : ?>
+                                <option value="<?= $supplier['id_supplier'] ?>"><?= $supplier['nama_supplier'] ?></option>
                             <?php endforeach; ?>
                         </select>
+                        <div id="error_id_supplier" class="invalid-feedback error_id_supplier">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="id_barang" class="col-sm-3 col-form-label col-form-label-sm"><b>Barang*</b></label>
+                    <div class="col-sm-9">
+                        <select class="form-control form-control-sm" style="width: 100%;" name="id_barang" id="id_barang">
+                            <option selected hidden disabled>Pilih Barang</option>
+                            <?php foreach ($barangs as $barang) : ?>
+                                <option value="<?= $barang['id_barang'] ?>"><?= $barang['kode_barang'] ?> | <?= $barang['nama_barang'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <div id="error_id_barang" class="invalid-feedback error_id_barang">
+                        </div>
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label for="jumlah" class="col-sm-3 col-form-label col-form-label-sm">Jumlah</label>
                     <div class="col-sm-9">
-                        <input type="text" name="jumlah" class="form-control form-control-sm" id="jumlah" placeholder="Jumlah">
+                        <input type="number" name="jumlah" class="form-control form-control-sm" id="jumlah" placeholder="Jumlah">
                         <!-- ERROR FEEDBACK -->
                         <div id="error_jumlah" class="invalid-feedback error_jumlah">
                         </div>
@@ -66,6 +82,8 @@
 
 <script>
     $(document).ready(function() {
+        $('#id_barang').select2();
+        $('#id_supplier').select2();
         $('.saveBarangMasuk').submit(function(e) {
             e.preventDefault();
             $.ajax({
@@ -83,12 +101,36 @@
                 },
                 success: function(response) {
                     if (response.error) {
+                        if (response.error.jumlah) {
+                            $('#jumlah').addClass('is-invalid');
+                            $('.error_jumlah').html(response.error.jumlah);
+                        } else {
+                            $('#jumlah').removeClass('is-invalid');
+                            $('.error_jumlah').html();
+                        }
+
                         if (response.error.id_barang) {
                             $('#id_barang').addClass('is-invalid');
                             $('.error_id_barang').html(response.error.id_barang);
                         } else {
                             $('#id_barang').removeClass('is-invalid');
                             $('.error_id_barang').html();
+                        }
+
+                        if (response.error.tanggal) {
+                            $('#tanggal').addClass('is-invalid');
+                            $('.error_tanggal').html(response.error.tanggal);
+                        } else {
+                            $('#tanggal').removeClass('is-invalid');
+                            $('.error_tanggal').html();
+                        }
+
+                        if (response.error.id_supplier) {
+                            $('#id_supplier').addClass('is-invalid');
+                            $('.error_id_supplier').html(response.error.id_supplier);
+                        } else {
+                            $('#id_supplier').removeClass('is-invalid');
+                            $('.error_id_supplier').html();
                         }
 
                     } else {

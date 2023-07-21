@@ -13,7 +13,7 @@ class PersediaanModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['id_barang', 'jumlah'];
 
     // Dates
     protected $useTimestamps = true;
@@ -42,7 +42,7 @@ class PersediaanModel extends Model
     public function getPersediaan()
     {
         $PersediaanModel = new PersediaanModel();
-        $data = $PersediaanModel->join('barang', 'persediaan.id_barang = barang.id_barang', 'left')->find();
+        $data = $PersediaanModel->join('barang', 'persediaan.id_barang = barang.id_barang', 'left')->where('jumlah >', '0')->find();
         return $data;
     }
 }

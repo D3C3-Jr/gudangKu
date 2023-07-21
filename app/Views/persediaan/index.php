@@ -36,14 +36,14 @@
         });
     };
 
-    function addBarangKeluar() {
+    function addPersediaan() {
 
         $.ajax({
-            url: "<?= site_url('barangKeluar/addBarangKeluar'); ?>",
+            url: "<?= site_url('persediaan/addPersediaan'); ?>",
             dataType: "json",
             success: function(response) {
-                $('.addModalBarangKeluar').html(response.data).show();
-                $('#addModalBarangKeluar').modal('show');
+                $('.addModalPersediaan').html(response.data).show();
+                $('#addModalPersediaan').modal('show');
             },
             error: function(xhr, ajaxOptions, thrownError) {
                 alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);

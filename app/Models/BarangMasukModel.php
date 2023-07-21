@@ -13,7 +13,7 @@ class BarangMasukModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_barang', 'kode_barang_masuk', 'tanggal', 'jumlah'];
+    protected $allowedFields    = ['id_barang', 'kode_barang_masuk', 'tanggal', 'jumlah', 'id_supplier'];
 
     // Dates
     protected $useTimestamps = true;
@@ -42,7 +42,7 @@ class BarangMasukModel extends Model
     public function getBarangMasuk()
     {
         $BarangMasukModel = new BarangMasukModel();
-        $data = $BarangMasukModel->join('barang', 'barang_masuk.id_barang = barang.id_barang', 'left')->orderBy('id_barang_masuk', 'DESC')->find();
+        $data = $BarangMasukModel->join('barang', 'barang_masuk.id_barang = barang.id_barang', 'left')->join('suppliers', 'barang_masuk.id_supplier = suppliers.id_supplier', 'left')->orderBy('tanggal', 'DESC')->find();
         return $data;
     }
 }
