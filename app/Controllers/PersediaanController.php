@@ -67,11 +67,21 @@ class PersediaanController extends BaseController
                     ]
                 ],
 
+                'id_barang' => [
+                    'label' => 'Barang',
+                    'rules' => 'required|is_unique[persediaan.id_barang]',
+                    'errors' => [
+                        'required' => '{field} Harus diisi',
+                        'is_unique' => '{field} Sudah ada, silahkan input di Barang Masuk'
+                    ]
+                ],
+
             ]);
             if (!$valid) {
                 $msg = [
                     'error' => [
                         'jumlah' => $validation->getError('jumlah'),
+                        'id_barang' => $validation->getError('id_barang'),
                     ]
                 ];
             } else {

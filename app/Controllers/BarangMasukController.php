@@ -76,9 +76,10 @@ class BarangMasukController extends BaseController
 
                 'id_barang' => [
                     'label' => 'Barang',
-                    'rules' => 'required',
+                    'rules' => 'required|is_not_unique[persediaan.id_barang]',
                     'errors' => [
                         'required' => '{field} Harus diisi',
+                        'is_not_unique' => '{field} Belum ada di data Persediaan, Silahkan isi terlebih dahulu di Persediaan'
                     ]
                 ],
 
