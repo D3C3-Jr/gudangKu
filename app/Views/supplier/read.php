@@ -73,10 +73,6 @@
                 },
             ],
             responsive: true,
-            paging: false,
-            scrollCollapse: true,
-            scrollX: true,
-            scrollY: 400
         });
     });
 </script>

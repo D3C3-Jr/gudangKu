@@ -13,7 +13,7 @@ class Supplier extends Seeder
         $suppliers = new SupplierModel();
         $faker = \Faker\Factory::create('id_ID');
 
-        for ($i = 0; $i < 200; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             $suppliers->save(
                 [
                     'kode_supplier'        =>    $faker->randomNumber(7, true),
