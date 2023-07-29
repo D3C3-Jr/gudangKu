@@ -18,6 +18,7 @@ class BarangKeluarController extends BaseController
     {
         $datas = [
             'title' => 'Data Barang Keluar',
+            'sidebar' => 'Transaksi'
         ];
         return view('barangKeluar/index', $datas);
     }
@@ -48,7 +49,7 @@ class BarangKeluarController extends BaseController
             $PersediaanModel = new PersediaanModel();
             $datas = [
                 'barangs' => $BarangModel->findAll(),
-                'persediaans' => $PersediaanModel->findAll(),
+                'persediaans' => $PersediaanModel->getPersediaan(),
             ];
             $msg = [
                 'data' => view('barangKeluar/add', $datas)

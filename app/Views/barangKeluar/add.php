@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="addModalBarangKeluar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="addModalBarangKeluar" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -24,10 +24,10 @@
                 <div class="form-group row">
                     <label for="id_barang" class="col-sm-3 col-form-label col-form-label-sm">Kode Barang</label>
                     <div class="col-sm-9">
-                        <select class="form-control form-control-sm" name="id_barang" id="id_barang">
+                        <select class="form-control form-control-sm" style="width: 100%;" name="id_barang" id="id_barang">
                             <option selected hidden>Pilih Barang</option>
-                            <?php foreach ($barangs as $barang) : ?>
-                                <option value="<?= $barang['id_barang'] ?>"><?= $barang['kode_barang'] ?>|<?= $barang['nama_barang'] ?></option>
+                            <?php foreach ($persediaans as $persediaan) : ?>
+                                <option value="<?= $persediaan['id_barang'] ?>"><?= $persediaan['kode_barang'] ?> | <?= $persediaan['nama_barang'] ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -69,6 +69,7 @@
 
 <script>
     $(document).ready(function() {
+        $('#id_barang').select2();
         $('.saveBarangKeluar').submit(function(e) {
             e.preventDefault();
             $.ajax({

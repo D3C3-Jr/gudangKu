@@ -18,34 +18,101 @@
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span>
         </a>
-
-    <li class="nav-item <?= $title == 'Data Supplier' ? 'active' : '' ?>">
-        <a class="nav-link" href="<?= base_url('/supplier'); ?>">
-            <i class="fas fa-fw fa-users"></i>
-            <span>Suppliers</span>
-        </a>
     </li>
 
-    <li class="nav-item <?= $title == 'Data Barang' ? 'active' : '' ?>">
-        <a class=" nav-link" href="<?= base_url('/barang'); ?>">
-            <i class="fas fa-fw fa-list"></i>
-            <span>Barang</span>
-        </a>
-    </li>
+    <!-- MASTER -->
+    <?php if ($title == 'Data Supplier') : ?>
+        <li class="nav-item active">
+            <a class="nav-link" href="#" data-toggle="collapse" data-target="#master" aria-expanded="true" aria-controls="master">
+                <i class="fas fa-fw fa-code-merge"></i>
+                <span>Master</span>
+            </a>
+            <div id="master" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Menu Master:</h6>
+                    <a class="collapse-item active" href="<?= base_url('/supplier'); ?>">Data Supplier</a>
+                    <a class="collapse-item" href="<?= base_url('/barang'); ?>">Data Barang</a>
+                </div>
+            </div>
+        </li>
+    <?php elseif ($title == 'Data Barang') : ?>
+        <li class="nav-item active">
+            <a class="nav-link" href="#" data-toggle="collapse" data-target="#master" aria-expanded="true" aria-controls="master">
+                <i class="fas fa-fw fa-code-merge"></i>
+                <span>Master</span>
+            </a>
+            <div id="master" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Menu Master:</h6>
+                    <a class="collapse-item" href="<?= base_url('/supplier'); ?>">Data Supplier</a>
+                    <a class="collapse-item active" href="<?= base_url('/barang'); ?>">Data Barang</a>
+                </div>
+            </div>
+        </li>
+    <?php else : ?>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#master" aria-expanded="true" aria-controls="master">
+                <i class="fas fa-fw fa-code-merge"></i>
+                <span>Master</span>
+            </a>
+            <div id="master" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Menu Master:</h6>
+                    <a class="collapse-item" href="<?= base_url('/supplier'); ?>">Data Supplier</a>
+                    <a class="collapse-item" href="<?= base_url('/barang'); ?>">Data Barang</a>
+                </div>
+            </div>
+        </li>
+    <?php endif; ?>
+    <!-- END MASTER -->
 
-    <li class="nav-item <?= $title == 'Data Barang Masuk' ? 'active' : '' ?>">
-        <a class=" nav-link" href="<?= base_url('/barangMasuk'); ?>">
-            <i class="fas fa-fw fa-download"></i>
-            <span>Barang Masuk</span>
-        </a>
-    </li>
 
-    <li class="nav-item <?= $title == 'Data Barang Keluar' ? 'active' : '' ?>">
-        <a class=" nav-link" href="<?= base_url('/barangKeluar'); ?>">
-            <i class="fas fa-fw fa-upload"></i>
-            <span>Barang Keluar</span>
-        </a>
-    </li>
+    <!-- TRANSAKSI -->
+    <?php if ($title == 'Data Barang Masuk') : ?>
+        <li class="nav-item active">
+            <a class="nav-link" href="#" data-toggle="collapse" data-target="#transaksi" aria-expanded="true" aria-controls="transaksi">
+                <i class="fas fa-fw fa-cart-shopping"></i>
+                <span>Transaksi</span>
+            </a>
+            <div id="transaksi" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Menu Transaksi:</h6>
+                    <a class="collapse-item active" href="<?= base_url('/barangMasuk'); ?>">Barang Masuk</a>
+                    <a class="collapse-item" href="<?= base_url('/barangKeluar'); ?>">Barang Keluar</a>
+                </div>
+            </div>
+        </li>
+    <?php elseif ($title == 'Data Barang Keluar') : ?>
+        <li class="nav-item active">
+            <a class="nav-link" href="#" data-toggle="collapse" data-target="#transaksi" aria-expanded="true" aria-controls="transaksi">
+                <i class="fas fa-fw fa-cart-shopping"></i>
+                <span>Transaksi</span>
+            </a>
+            <div id="transaksi" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Menu Transaksi:</h6>
+                    <a class="collapse-item" href="<?= base_url('/barangMasuk'); ?>">Barang Masuk</a>
+                    <a class="collapse-item active" href="<?= base_url('/barangKeluar'); ?>">Barang Keluar</a>
+                </div>
+            </div>
+        </li>
+    <?php else : ?>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#transaksi" aria-expanded="true" aria-controls="transaksi">
+                <i class="fas fa-fw fa-cart-shopping"></i>
+                <span>Transaksi</span>
+            </a>
+            <div id="transaksi" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Menu Transaksi:</h6>
+                    <a class="collapse-item" href="<?= base_url('/barangMasuk'); ?>">Barang Masuk</a>
+                    <a class="collapse-item" href="<?= base_url('/barangKeluar'); ?>">Barang Keluar</a>
+                </div>
+            </div>
+        </li>
+    <?php endif; ?>
+    <!-- END TRANSASKI -->
+
 
     <li class="nav-item <?= $title == 'Data Persediaan' ? 'active' : '' ?>">
         <a class=" nav-link" href="<?= base_url('/persediaan'); ?>">

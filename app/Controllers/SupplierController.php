@@ -12,7 +12,8 @@ class SupplierController extends BaseController
     public function index()
     {
         $datas = [
-            'title' => 'Data Supplier'
+            'title' => 'Data Supplier',
+            'sidebar' => 'Master'
         ];
         return view('supplier/index', $datas);
     }

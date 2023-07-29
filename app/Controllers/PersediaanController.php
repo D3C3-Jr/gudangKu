@@ -14,7 +14,8 @@ class PersediaanController extends BaseController
     public function index()
     {
         $datas = [
-            'title' => 'Data Persediaan'
+            'title' => 'Data Persediaan',
+            'sidebar' => ''
         ];
         return view('persediaan/index', $datas);
     }

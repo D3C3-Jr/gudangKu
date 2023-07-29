@@ -17,6 +17,7 @@ class BarangMasukController extends BaseController
     {
         $datas = [
             'title' => 'Data Barang Masuk',
+            'sidebar' => 'Transaksi'
         ];
         return view('barangMasuk/index', $datas);
     }
