@@ -1,5 +1,5 @@
 <?php $this->extend('layout/main'); ?>
 
 <?= $this->section('content'); ?>
-<img src="<?= base_url() ?>/assets/img/hello.svg" alt="">
+<img class="img-fluid" src="<?= base_url() ?>/assets/img/hello.svg" alt="">
 <?= $this->endSection(); ?>
