@@ -60,6 +60,17 @@ class BarangKeluarController extends BaseController
         }
     }
 
+    public function getStok()
+    {
+        $BarangKeluarModel = new BarangKeluarModel();
+        $id_barang = array(
+            'id_barang' => $this->request->getPost('id_barang'),
+        );
+        $data = $BarangKeluarModel->getStok($id_barang);
+
+        echo json_encode($data);
+    }
+
     public function saveBarangKeluar()
     {
         if ($this->request->isAJAX()) {
