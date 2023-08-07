@@ -66,6 +66,9 @@ class BarangMasukController extends BaseController
         $BarangModel = new BarangModel();
         $SupplierModel = new SupplierModel();
         $selectSupplier = $this->request->getPost('id_supplier');
+
+        if ($selectSupplier) {
+        }
     }
 
     public function saveBarangMasuk()

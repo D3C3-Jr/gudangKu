@@ -86,11 +86,20 @@ class BarangKeluarController extends BaseController
                     ]
                 ],
 
+                'id_barang' => [
+                    'label' => 'Barang',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} Harus diisi',
+                    ]
+                ],
+
             ]);
             if (!$valid) {
                 $msg = [
                     'error' => [
                         'jumlah' => $validation->getError('jumlah'),
+                        'id_barang' => $validation->getError('id_barang'),
                     ]
                 ];
             } else {

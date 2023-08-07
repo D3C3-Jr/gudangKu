@@ -30,6 +30,8 @@
                                 <option value="<?= $persediaan['id_barang'] ?>"><?= $persediaan['kode_barang'] ?> | <?= $persediaan['nama_barang'] ?></option>
                             <?php endforeach; ?>
                         </select>
+                        <div id="error_id_barang" class="invalid-feedback error_id_barang">
+                        </div>
                     </div>
                 </div>
 
@@ -125,6 +127,14 @@
                         } else {
                             $('#jumlah').removeClass('is-invalid');
                             $('.error_jumlah').html();
+                        }
+
+                        if (response.error.id_barang) {
+                            $('#id_barang').addClass('is-invalid');
+                            $('.error_id_barang').html(response.error.id_barang);
+                        } else {
+                            $('#id_barang').removeClass('is-invalid');
+                            $('.error_id_barang').html();
                         }
 
                     } else {
