@@ -1,6 +1,6 @@
 <!-- Modal -->
-<div class="modal fade" id="addModalBarangKeluar" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<div class="modal fade" id="addModalBarangKeluar" data-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
@@ -22,42 +22,6 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="id_barang" class="col-sm-3 col-form-label col-form-label-sm">Kode Barang</label>
-                    <div class="col-sm-9">
-                        <select class="form-control form-control-sm" style="width: 100%;" name="id_barang" id="id_barang">
-                            <option selected hidden>Pilih Barang</option>
-                            <?php foreach ($persediaans as $persediaan) : ?>
-                                <option value="<?= $persediaan['id_barang'] ?>"><?= $persediaan['kode_barang'] ?> | <?= $persediaan['nama_barang'] ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                        <div id="error_id_barang" class="invalid-feedback error_id_barang">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="stok" class="col-sm-3 col-form-label col-form-label-sm">Stok</label>
-                    <div class="col-sm-9">
-                        <p class="stok" id="stok"></p>
-                        <!-- ERROR FEEDBACK -->
-                        <div id="error_jumlah" class="invalid-feedback error_jumlah">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="jumlah" class="col-sm-3 col-form-label col-form-label-sm">Jumlah</label>
-                    <div class="col-sm-9">
-                        <input type="text" name="jumlah" class="form-control form-control-sm" id="jumlah" placeholder="Jumlah">
-
-
-                        <!-- ERROR FEEDBACK -->
-                        <div id="error_jumlah" class="invalid-feedback error_jumlah">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group row">
                     <label for="tanggal" class="col-sm-3 col-form-label col-form-label-sm">Tanggal</label>
                     <div class="col-sm-9">
                         <input type="date" name="tanggal" class="form-control form-control-sm" id="tanggal" placeholder="Tanggal">
@@ -67,6 +31,30 @@
                     </div>
                 </div>
 
+                <div class="form-group row" id="field">
+                    <label for="id_barang" class="col-sm-3 col-form-label col-form-label-sm">Kode Barang</label>
+                    <div class="col-sm-5 mb-2">
+                        <select class="form-control form-control-sm" style="width: 100%;" name="id_barang" id="id_barang">
+                            <option selected hidden>Pilih Barang</option>
+                            <?php foreach ($persediaans as $persediaan) : ?>
+                                <option value="<?= $persediaan['id_barang'] ?>"><?= $persediaan['kode_barang'] ?> | <?= $persediaan['nama_barang'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <div id="error_id_barang" class="invalid-feedback error_id_barang">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <input type="text" name="jumlah" class="form-control form-control-sm" id="jumlah" placeholder="Jumlah">
+                        <!-- ERROR FEEDBACK -->
+                        <div id="error_jumlah" class="invalid-feedback error_jumlah">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-1">
+                        <button type="button" class="btn btn-sm btn-info" id="tambahField"><i class="fa fa-plus"></i></button>
+                    </div>
+                </div>
 
             </div>
             <div class="modal-footer">
@@ -82,26 +70,40 @@
     $(document).ready(function() {
         $('#id_barang').select2();
 
-        $('#id_barang').change(function() {
-            // alert("Berhasil");
-            var id_barang = $(this).val();
+        $('#tambahField').click(function(event) {
+            var tambahField = $("#field");
+            var test = `
+            
+            <label for="id_barang" class="col-sm-3 col-form-label col-form-label-sm"></label>
+                    <div class="col-sm-5 mb-2">
+                        <select class="form-control form-control-sm" style="width: 100%;" name="id_barang" id="id_barang">
+                            <option selected hidden>Pilih Barang</option>
+                            <?php foreach ($persediaans as $persediaan) : ?>
+                                <option value="<?= $persediaan['id_barang'] ?>"><?= $persediaan['kode_barang'] ?> | <?= $persediaan['nama_barang'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <div id="error_id_barang" class="invalid-feedback error_id_barang">
+                        </div>
+                    </div>
 
-            $.ajax({
-                url: '<?= base_url() ?>/barangKeluar/getStok',
-                method: 'POST',
-                data: {
-                    id_barang: id_barang
-                },
-                dataType: 'json',
-                success: function(response) {
-                    // $('#sel_depart').find('option').not(':first').remove();
+                    <div class="col-sm-3">
+                        <input type="text" name="jumlah" class="form-control form-control-sm" id="jumlah" placeholder="Jumlah">
+                        <!-- ERROR FEEDBACK -->
+                        <div id="error_jumlah" class="invalid-feedback error_jumlah">
+                        </div>
+                    </div>
+                    <div class="col-sm-1">
+                        <button type="button" class="btn btn-sm btn-danger" id="remove"><i class="fa fa-plus"></i></button>
+                    </div>
+                    
+            `;
+            event.preventDefault();
+            $(test).appendTo(field);
 
-                    $.each(response, function(index, data) {
-                        $("#stok").append(data['jumlah']);
-                        // $("#stok").remove();
-                    })
-                }
-            });
+        });
+
+        $('body').on('click', '#remove', function() {
+            $(this).parent('test').remove();
         });
 
         $('.saveBarangKeluar').submit(function(e) {

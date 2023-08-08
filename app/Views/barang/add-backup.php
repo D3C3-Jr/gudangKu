@@ -1,6 +1,6 @@
 <!-- Modal -->
 <div class="modal fade" id="addModalBarang" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Tambah Data</h5>
@@ -12,7 +12,16 @@
             <div class="modal-body">
 
                 <div class="form-group row">
+                    <label for="kode_barang" class="col-sm-2 col-form-label col-form-label-sm">Kode</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="kode_barang" class="form-control form-control-sm" id="kode_barang" value="<?= date('YmdHis') ?>" readonly>
+                        <!-- ERROR FEEDBACK -->
+                        <div id="error_kode_barang" class="invalid-feedback error_kode_barang">
+                        </div>
+                    </div>
+                </div>
 
+                <div class="form-group row">
                     <label for="id_supplier" class="col-sm-2 col-form-label col-form-label-sm">Supplier</label>
                     <div class="col-sm-10">
                         <select class="form-control form-control-sm" style="width: 100%;" name="id_supplier" id="id_supplier">
@@ -24,33 +33,27 @@
                     </div>
                 </div>
 
-                <div class="form-group row" id="field">
-                    <label for="kode_barang" class="col-sm-2 col-form-label col-form-label-sm"></label>
-                    <div class="col-sm-3 mb-2">
-                        <input type="text" name="kode_barang" class="form-control form-control-sm" id="kode_barang" placeholder="Kode Barang">
-                        <!-- ERROR FEEDBACK -->
-                        <div id="error_kode_barang" class="invalid-feedback error_kode_barang">
-                        </div>
-                    </div>
-                    <div class="col-sm-4 mb-2">
+                <div class="form-group row">
+                    <label for="nama_barang" class="col-sm-2 col-form-label col-form-label-sm">Nama</label>
+                    <div class="col-sm-10">
                         <input type="text" name="nama_barang" class="form-control form-control-sm" id="nama_barang" placeholder="Nama barang">
                         <!-- ERROR FEEDBACK -->
                         <div id="error_nama_barang" class="invalid-feedback error_nama_barang">
                         </div>
                     </div>
-                    <div class="col-sm-2 mb-2">
+                </div>
+
+                <div class="form-group row">
+                    <label for="jenis_barang" class="col-sm-2 col-form-label col-form-label-sm">Jenis</label>
+                    <div class="col-sm-10">
                         <select class="form-control form-control-sm" name="jenis_barang" id="jenis_barang">
-                            <option selected hidden>Jenis Barang</option>
+                            <option selected hidden>Pilih Jenis Barang</option>
                             <option value="Mentah">Mentah</option>
                             <option value="Setengah Jadi">Setengah Jadi</option>
                             <option value="Jadi">Jadi</option>
                         </select>
                     </div>
-
-                    <button type="button" class="btn btn-info btn-sm mb-2" id="tambahField"><i class="fa fa-plus"></i></button>
-
                 </div>
-
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
@@ -64,38 +67,6 @@
 <script>
     $(document).ready(function() {
         $('#id_supplier').select2();
-
-        $('#tambahField').click(function(event) {
-            var tambahField = $("#field");
-            var test = `
-            <label for="kode_barang" class="col-sm-2 col-form-label col-form-label-sm"></label>
-                <div class="col-sm-3 mb-2">
-                    <input type="text" name="kode_barang" class="form-control form-control-sm" id="kode_barang" placeholder="Kode Barang">
-                        <!-- ERROR FEEDBACK -->
-                        <div id="error_kode_barang" class="invalid-feedback error_kode_barang">
-                        </div>
-                </div>
-                <div class="col-sm-4 mb-2">
-                    <input type="text" name="nama_barang" class="form-control form-control-sm" id="nama_barang" placeholder="Nama barang">
-                        <!-- ERROR FEEDBACK -->
-                        <div id="error_nama_barang" class="invalid-feedback error_nama_barang">
-                        </div>
-                </div>
-                <div class="col-sm-2 mb-2">
-                    <select class="form-control form-control-sm" name="jenis_barang" id="jenis_barang">
-                            <option selected hidden>Jenis Barang</option>
-                            <option value="Mentah">Mentah</option>
-                            <option value="Setengah Jadi">Setengah Jadi</option>
-                            <option value="Jadi">Jadi</option>
-                    </select>
-                </div>    
-            `;
-            event.preventDefault();
-            $(test).appendTo(field);
-
-        });
-
-
         $('.saveBarang').submit(function(e) {
             e.preventDefault();
             $.ajax({
