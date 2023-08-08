@@ -76,12 +76,30 @@ class BarangController extends BaseController
                     ]
                 ],
 
+                'id_supplier' => [
+                    'label' => 'Supplier',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} Harus diisi',
+                    ]
+                ],
+
+                'jenis_barang' => [
+                    'label' => 'Jenis Barang',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} Harus diisi',
+                    ]
+                ],
+
             ]);
             if (!$valid) {
                 $msg = [
                     'error' => [
                         'kode_barang' => $validation->getError('kode_barang'),
                         'nama_barang' => $validation->getError('nama_barang'),
+                        'id_supplier' => $validation->getError('id_supplier'),
+                        'jenis_barang' => $validation->getError('jenis_barang'),
                     ]
                 ];
             } else {
