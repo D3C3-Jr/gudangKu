@@ -29,6 +29,8 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+$routes->get('/login', 'AuthController::login');
+
 $routes->get('/', 'HomeController::index');
 
 $routes->get('/supplier', 'SupplierController::index');
@@ -50,6 +52,7 @@ $routes->get('/barangKeluar', 'BarangKeluarController::index');
 $routes->get('/barangKeluar/readBarangKeluar', 'BarangKeluarController::readBarangKeluar');
 $routes->get('/barangKeluar/addBarangKeluar', 'BarangKeluarController::addBarangKeluar');
 $routes->post('/barangKeluar/saveBarangKeluar', 'BarangKeluarController::saveBarangKeluar');
+$routes->post('/barangKeluar/getStok/', 'BarangKeluarController::getStok');
 
 $routes->get('/persediaan', 'PersediaanController::index');
 $routes->get('/persediaan/readPersediaan', 'PersediaanController::readPersediaan');

@@ -17,6 +17,7 @@ class BarangMasukController extends BaseController
     {
         $datas = [
             'title' => 'Data Barang Masuk',
+            'sidebar' => 'Transaksi'
         ];
         return view('barangMasuk/index', $datas);
     }
@@ -25,6 +26,7 @@ class BarangMasukController extends BaseController
     {
         if ($this->request->isAJAX()) {
             $BarangMasukModel = new BarangMasukModel();
+            $BarangModel = new BarangModel();
 
             $data = [
                 'title' => 'Data Barang Masuk',
@@ -56,6 +58,16 @@ class BarangMasukController extends BaseController
             echo json_encode($msg);
         } else {
             exit('Oops, Something went wrong');
+        }
+    }
+
+    public function showJumlah()
+    {
+        $BarangModel = new BarangModel();
+        $SupplierModel = new SupplierModel();
+        $selectSupplier = $this->request->getPost('id_supplier');
+
+        if ($selectSupplier) {
         }
     }
 

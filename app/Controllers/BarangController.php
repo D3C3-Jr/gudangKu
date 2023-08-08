@@ -14,7 +14,8 @@ class BarangController extends BaseController
     public function index()
     {
         $datas = [
-            'title' => 'Data Barang'
+            'title' => 'Data Barang',
+            'sidebar' => 'Master'
         ];
         return view('barang/index', $datas);
     }

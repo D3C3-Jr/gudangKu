@@ -10,6 +10,7 @@ class HomeController extends BaseController
     {
         $datas = [
             'title' => 'Home',
+            'sidebar' => ''
         ];
         return view('home/index', $datas);
     }

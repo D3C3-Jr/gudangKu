@@ -45,4 +45,12 @@ class BarangKeluarModel extends Model
         $data = $BarangKeluarModel->join('barang', 'barang_keluar.id_barang = barang.id_barang', 'left')->orderBy('id_barang_keluar', 'DESC')->find();
         return $data;
     }
+
+    public function getStok($id_barang)
+    {
+        $sql = 'SELECT * FROM persediaan WHERE id_barang = ' . $id_barang['id_barang'];
+        $query = $this->db->query($sql);
+
+        return $query->getResult();
+    }
 }

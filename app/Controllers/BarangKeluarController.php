@@ -18,6 +18,7 @@ class BarangKeluarController extends BaseController
     {
         $datas = [
             'title' => 'Data Barang Keluar',
+            'sidebar' => 'Transaksi'
         ];
         return view('barangKeluar/index', $datas);
     }
@@ -48,7 +49,7 @@ class BarangKeluarController extends BaseController
             $PersediaanModel = new PersediaanModel();
             $datas = [
                 'barangs' => $BarangModel->findAll(),
-                'persediaans' => $PersediaanModel->findAll(),
+                'persediaans' => $PersediaanModel->getPersediaan(),
             ];
             $msg = [
                 'data' => view('barangKeluar/add', $datas)
@@ -57,6 +58,17 @@ class BarangKeluarController extends BaseController
         } else {
             exit('Oops, Something went wrong');
         }
+    }
+
+    public function getStok()
+    {
+        $BarangKeluarModel = new BarangKeluarModel();
+        $id_barang = array(
+            'id_barang' => $this->request->getPost('id_barang'),
+        );
+        $data = $BarangKeluarModel->getStok($id_barang);
+
+        echo json_encode($data);
     }
 
     public function saveBarangKeluar()
@@ -74,11 +86,20 @@ class BarangKeluarController extends BaseController
                     ]
                 ],
 
+                'id_barang' => [
+                    'label' => 'Barang',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} Harus diisi',
+                    ]
+                ],
+
             ]);
             if (!$valid) {
                 $msg = [
                     'error' => [
                         'jumlah' => $validation->getError('jumlah'),
+                        'id_barang' => $validation->getError('id_barang'),
                     ]
                 ];
             } else {
