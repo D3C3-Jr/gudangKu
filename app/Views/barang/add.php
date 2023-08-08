@@ -21,35 +21,43 @@
                                 <option value="<?= $supplier['id_supplier'] ?>"><?= $supplier['kode_supplier'] ?> | <?= $supplier['nama_supplier'] ?></option>
                             <?php endforeach; ?>
                         </select>
+                        <!-- ERROR FEEDBACK -->
+                        <div id="error_id_supplier" class="invalid-feedback error_id_supplier">
+                        </div>
                     </div>
                 </div>
 
-                <div class="form-group row" id="field">
+                <div class="form-group row">
                     <label for="kode_barang" class="col-sm-2 col-form-label col-form-label-sm"></label>
-                    <div class="col-sm-3 mb-2">
+                    <div class="col-sm-3 mb-1">
                         <input type="text" name="kode_barang" class="form-control form-control-sm" id="kode_barang" placeholder="Kode Barang">
                         <!-- ERROR FEEDBACK -->
                         <div id="error_kode_barang" class="invalid-feedback error_kode_barang">
                         </div>
                     </div>
-                    <div class="col-sm-4 mb-2">
+                    <div class="col-sm-4 mb-1">
                         <input type="text" name="nama_barang" class="form-control form-control-sm" id="nama_barang" placeholder="Nama barang">
                         <!-- ERROR FEEDBACK -->
                         <div id="error_nama_barang" class="invalid-feedback error_nama_barang">
                         </div>
                     </div>
-                    <div class="col-sm-2 mb-2">
+                    <div class="col-sm-2 mb-1">
                         <select class="form-control form-control-sm" name="jenis_barang" id="jenis_barang">
-                            <option selected hidden>Jenis Barang</option>
+                            <option selected hidden disabled>Jenis Barang</option>
                             <option value="Mentah">Mentah</option>
                             <option value="Setengah Jadi">Setengah Jadi</option>
                             <option value="Jadi">Jadi</option>
                         </select>
+                        <!-- ERROR FEEDBACK -->
+                        <div id="error_jenis_barang" class="invalid-feedback error_jenis_barang">
+                        </div>
                     </div>
-
-                    <button type="button" class="btn btn-info btn-sm mb-2" id="tambahField"><i class="fa fa-plus"></i></button>
-
+                    <div class="col-sm-1">
+                        <button type="button" class="btn btn-info btn-sm btn-block" id="tambahField"><i class="fa fa-plus"></i></button>
+                    </div>
                 </div>
+
+                <div id="newField"></div>
 
             </div>
             <div class="modal-footer">
@@ -65,35 +73,41 @@
     $(document).ready(function() {
         $('#id_supplier').select2();
 
-        $('#tambahField').click(function(event) {
-            var tambahField = $("#field");
-            var test = `
-            <label for="kode_barang" class="col-sm-2 col-form-label col-form-label-sm"></label>
-                <div class="col-sm-3 mb-2">
-                    <input type="text" name="kode_barang" class="form-control form-control-sm" id="kode_barang" placeholder="Kode Barang">
-                        <!-- ERROR FEEDBACK -->
-                        <div id="error_kode_barang" class="invalid-feedback error_kode_barang">
-                        </div>
-                </div>
-                <div class="col-sm-4 mb-2">
-                    <input type="text" name="nama_barang" class="form-control form-control-sm" id="nama_barang" placeholder="Nama barang">
-                        <!-- ERROR FEEDBACK -->
-                        <div id="error_nama_barang" class="invalid-feedback error_nama_barang">
-                        </div>
-                </div>
-                <div class="col-sm-2 mb-2">
-                    <select class="form-control form-control-sm" name="jenis_barang" id="jenis_barang">
-                            <option selected hidden>Jenis Barang</option>
-                            <option value="Mentah">Mentah</option>
-                            <option value="Setengah Jadi">Setengah Jadi</option>
-                            <option value="Jadi">Jadi</option>
-                    </select>
-                </div>    
+        $('#tambahField').click(function() {
+            var newField = `
+            <div class="form-group row" id="tambahanField">
+                    <label for="kode_barang" class="col-sm-2 col-form-label col-form-label-sm"></label>
+                    <div class="col-sm-3 mb-1">
+                        <input type="text" name="kode_barang" class="form-control form-control-sm" id="kode_barang" placeholder="Kode Barang">
+                            <!-- ERROR FEEDBACK -->
+                            <div id="error_kode_barang" class="invalid-feedback error_kode_barang">
+                            </div>
+                    </div>
+                    <div class="col-sm-4 mb-1">
+                        <input type="text" name="nama_barang" class="form-control form-control-sm" id="nama_barang" placeholder="Nama barang">
+                            <!-- ERROR FEEDBACK -->
+                            <div id="error_nama_barang" class="invalid-feedback error_nama_barang">
+                            </div>
+                    </div>
+                    <div class="col-sm-2 mb-1">
+                        <select class="form-control form-control-sm" name="jenis_barang" id="jenis_barang">
+                                <option selected hidden>Jenis Barang</option>
+                                <option value="Mentah">Mentah</option>
+                                <option value="Setengah Jadi">Setengah Jadi</option>
+                                <option value="Jadi">Jadi</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-1">
+                        <button type="button" class="btn btn-danger btn-sm btn-block" id="hapusField"><i class="fas fa-trash"></i></button>
+                    </div>    
+                </div> 
             `;
-            event.preventDefault();
-            $(test).appendTo(field);
-
+            $('#newField').append(newField);
         });
+        $("body").on("click", "#hapusField", function() {
+            $(this).parents("#tambahanField").remove();
+        })
+
 
 
         $('.saveBarang').submit(function(e) {
@@ -127,6 +141,22 @@
                         } else {
                             $('#nama_barang').removeClass('is-invalid');
                             $('.error_nama_barang').html();
+                        }
+
+                        if (response.error.id_supplier) {
+                            $('#id_supplier').addClass('is-invalid');
+                            $('.error_id_supplier').html(response.error.id_supplier);
+                        } else {
+                            $('#id_supplier').removeClass('is-invalid');
+                            $('.error_id_supplier').html();
+                        }
+
+                        if (response.error.jenis_barang) {
+                            $('#jenis_barang').addClass('is-invalid');
+                            $('.error_jenis_barang').html(response.error.jenis_barang);
+                        } else {
+                            $('#jenis_barang').removeClass('is-invalid');
+                            $('.error_jenis_barang').html();
                         }
 
                     } else {
