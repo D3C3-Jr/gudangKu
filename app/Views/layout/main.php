@@ -170,13 +170,6 @@
 
 
     <script>
-        $('.addBarang').click(function() {
-            addBarang();
-        });
-        $('.readBarang').click(function() {
-            readBarang();
-        });
-
         $('.readSupplier').click(function() {
             readSuppliers();
         });

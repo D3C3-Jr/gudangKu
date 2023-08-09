@@ -41,6 +41,7 @@ $routes->post('/supplier/saveSupplier', 'SupplierController::saveSupplier');
 $routes->get('/barang', 'BarangController::index');
 $routes->get('/barang/readBarang', 'BarangController::readBarang');
 $routes->get('/barang/addBarang', 'BarangController::addBarang');
+$routes->get('/barang/addMultipleBarang', 'BarangController::addMultipleBarang');
 $routes->post('/barang/saveBarang', 'BarangController::saveBarang');
 
 $routes->get('/barangMasuk', 'BarangMasukController::index');

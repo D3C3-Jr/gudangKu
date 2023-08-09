@@ -54,6 +54,23 @@ class BarangController extends BaseController
         }
     }
 
+    public function addMultipleBarang()
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        $SupplierModel = new SupplierModel();
+        if ($this->request->isAJAX()) {
+            $datas = [
+                'suppliers' => $SupplierModel->findAll()
+            ];
+            $msg = [
+                'data' => view('barang/add-multiple', $datas)
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Oops, Something went wrong');
+        }
+    }
+
     public function saveBarang()
     {
         if ($this->request->isAJAX()) {

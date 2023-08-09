@@ -7,8 +7,9 @@
         <!-- Dropdown Card Example -->
         <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
-            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <div class="card-header py-3 align-items-center justify-content-between">
                 <button class="btn btn-primary readBarang">Lihat Data</button>
+                <button class="btn btn-success addMultipleBarang" hidden>Tambah Banyak Data</button>
                 <button class="btn btn-primary addBarang" hidden>Tambah Data</button>
             </div>
             <!-- Card Body -->
@@ -21,6 +22,18 @@
 <div class="addModalBarang" style="display:none"></div>
 
 <script>
+    $(document).ready(function() {
+        $('.addBarang').click(function() {
+            addBarang();
+        });
+        $('.addMultipleBarang').click(function() {
+            addMultipleBarang();
+        });
+        $('.readBarang').click(function() {
+            readBarang();
+        });
+    });
+
     function readBarang() {
         $.ajax({
             url: "<?= site_url('barang/readBarang'); ?>",
@@ -28,6 +41,7 @@
             success: function(response) {
                 $('.viewDataBarang').html(response.data);
                 $('.addBarang').removeAttr("hidden");
+                $('.addMultipleBarang').removeAttr("hidden");
                 $('.readBarang').html('<i class="fa fa-arrows-rotate"></i>');
             },
             error: function(xhr, ajaxOptions, thrownError) {
@@ -37,7 +51,6 @@
     };
 
     function addBarang() {
-
         $.ajax({
             url: "<?= site_url('barang/addBarang'); ?>",
             dataType: "json",
@@ -49,7 +62,20 @@
                 alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
             }
         });
+    }
 
+    function addMultipleBarang() {
+        $.ajax({
+            url: "<?= site_url('barang/addMultipleBarang'); ?>",
+            dataType: "json",
+            success: function(response) {
+                $('.addModalBarang').html(response.data).show();
+                $('#addModalBarang').modal('show');
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+            }
+        });
     }
 </script>
 <?= $this->endSection(); ?>
