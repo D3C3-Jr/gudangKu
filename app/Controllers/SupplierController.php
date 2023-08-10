@@ -145,4 +145,40 @@ class SupplierController extends BaseController
             exit('Oops, Something went wrong');
         }
     }
+
+
+    public function saveMultipleSupplier()
+    {
+        if ($this->request->isAJAX()) {
+            $SupplierModel = new SupplierModel();
+            $kode_supplier = $this->request->getVar('kode_supplier');
+            $nama_supplier = $this->request->getVar('nama_supplier');
+            $alamat = $this->request->getVar('alamat');
+            $kota = $this->request->getVar('kota');
+            $telp = $this->request->getVar('telp');
+            $email = $this->request->getVar('email');
+            $jenis_supplier = $this->request->getVar('jenis_supplier');
+
+            $jumlahData = count($kode_supplier);
+
+            for ($i = 0; $i < $jumlahData; $i++) {
+                $SupplierModel->insert([
+                    'kode_supplier'     => $kode_supplier[$i],
+                    'nama_supplier'     => $nama_supplier[$i],
+                    'alamat'            => $alamat[$i],
+                    'kota'              => $kota[$i],
+                    'telp'              => $telp[$i],
+                    'email'             => $email[$i],
+                    'jenis_supplier'    => $jenis_supplier[$i],
+                ]);
+            }
+
+            $msg = [
+                'success' => "$jumlahData Data berhasil di simpan"
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Oops, Something went wrong');
+        }
+    }
 }

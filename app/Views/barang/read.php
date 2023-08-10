@@ -57,7 +57,7 @@
                     extend: 'print',
                     text: '<i class="fas fa-print" aria-hidden="true"></i> Print',
                     filename: 'Barang',
-                    title: 'Data Barang',
+                    title: '<center>PT. TJFORGE INDONESIA <br> Data Barang<br><hr>',
                     exportOptions: {
                         modifier: {
                             search: 'applied',
