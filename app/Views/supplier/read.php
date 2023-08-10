@@ -38,14 +38,11 @@
 <script>
     $(document).ready(function() {
         $('#dataTable').DataTable({
-            fixedHeader: {
-                header: true,
-                footer: true
-            },
+
             dom: 'Bfrtip',
             buttons: [{
                     extend: 'excel',
-                    text: '<i class="far fa-file-excel" aria-hidden="true"></i> Excel Export',
+                    text: '<i class="far fa-file-excel" aria-hidden="true"></i> Excel',
                     filename: 'Suppliers',
                     title: 'Data Suppliers',
                     exportOptions: {

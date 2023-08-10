@@ -32,14 +32,16 @@
 <script>
     $(document).ready(function() {
         $('#dataTable').DataTable({
-            fixedHeader: {
-                header: true,
-                footer: true
-            },
+            responsive: true,
+
+            // fixedHeader: {
+            //     header: true,
+            //     footer: true
+            // },
             dom: 'Bfrtip',
             buttons: [{
                     extend: 'excel',
-                    text: '<i class="far fa-file-excel" aria-hidden="true"></i> Excel Export',
+                    text: '<i class="far fa-file-excel" aria-hidden="true"></i> Excel',
                     filename: 'Barang',
                     title: 'Data Barang',
                     exportOptions: {
@@ -66,11 +68,10 @@
                     }
                 },
             ],
-            responsive: true,
-            paging: false,
-            scrollCollapse: true,
-            scrollX: true,
-            scrollY: 400
+            // paging: true,
+            // scrollCollapse: false,
+            // scrollX: false,
+            // scrollY: 400
         });
     });
 </script>

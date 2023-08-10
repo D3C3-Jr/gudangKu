@@ -170,13 +170,6 @@
 
 
     <script>
-        $('.readSupplier').click(function() {
-            readSuppliers();
-        });
-        $('.addSupplier').click(function() {
-            addSupplier();
-        });
-
         $('.readBarangMasuk').click(function() {
             readBarangMasuk();
         });

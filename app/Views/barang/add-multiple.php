@@ -8,50 +8,29 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <?= form_open('barang/saveBarang', ['class' => 'saveBarang']) ?>
+            <?= form_open('barang/saveMultipleBarang', ['class' => 'saveMultipleBarang']) ?>
             <div class="modal-body">
 
-                <div class="form-group row">
-                    <div class="col-sm-3 mb-1">
-                        <input type="text" name="kode_barang" class="form-control form-control-sm" id="kode_barang" placeholder="Kode Barang">
-                        <!-- ERROR FEEDBACK -->
-                        <div id="error_kode_barang" class="invalid-feedback error_kode_barang">
-                        </div>
-                    </div>
-                    <div class="col-sm-4 mb-1">
-                        <input type="text" name="nama_barang" class="form-control form-control-sm" id="nama_barang" placeholder="Nama barang">
-                        <!-- ERROR FEEDBACK -->
-                        <div id="error_nama_barang" class="invalid-feedback error_nama_barang">
-                        </div>
-                    </div>
-                    <div class="col-sm-2 mb-1">
-                        <select class="form-control form-control-sm" name="jenis_barang" id="jenis_barang">
-                            <option selected hidden disabled>Jenis Barang</option>
-                            <option value="Mentah">Mentah</option>
-                            <option value="Setengah Jadi">Setengah Jadi</option>
-                            <option value="Jadi">Jadi</option>
-                        </select>
-                        <!-- ERROR FEEDBACK -->
-                        <div id="error_jenis_barang" class="invalid-feedback error_jenis_barang">
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <select class="form-control form-control-sm" style="width: 100%;" name="id_supplier" id="id_supplier">
-                            <option selected hidden disabled>Pilih Supplier</option>
-                            <?php foreach ($suppliers as $supplier) : ?>
-                                <option value="<?= $supplier['id_supplier'] ?>"><?= $supplier['kode_supplier'] ?> | <?= $supplier['nama_supplier'] ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                        <!-- ERROR FEEDBACK -->
-                        <div id="error_id_supplier" class="invalid-feedback error_id_supplier">
-                        </div>
-                    </div>
-                    <div class="col-sm-1">
-                        <button type="button" class="btn btn-info btn-sm btn-block" id="tambahField"><i class="fa fa-plus"></i></button>
-                    </div>
-                </div>
-
-                <div id="newField"></div>
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <td>Kode Barang</td>
+                            <td>Supplier</td>
+                            <td>Nama Barang</td>
+                            <td>Jenis Barang</td>
+                            <td>#</td>
+                        </tr>
+                    </thead>
+                    <tbody id="tambahanField">
+                        <tr>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><button type="button" id="tambahField" class="btn btn-sm btn-info"><i class="fa fa-plus"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
 
             </div>
             <div class="modal-footer">
@@ -65,59 +44,28 @@
 
 <script>
     $(document).ready(function() {
+
         $('#id_supplier').select2();
 
         $('#tambahField').click(function() {
-            var newField = `
-            <div class="form-group row" id="tambahanField">
-            <div class="col-sm-3 mb-1">
-                        <input type="text" name="kode_barang" class="form-control form-control-sm" id="kode_barang" placeholder="Kode Barang">
-                        <!-- ERROR FEEDBACK -->
-                        <div id="error_kode_barang" class="invalid-feedback error_kode_barang">
-                        </div>
-                    </div>
-                    <div class="col-sm-4 mb-1">
-                        <input type="text" name="nama_barang" class="form-control form-control-sm" id="nama_barang" placeholder="Nama barang">
-                        <!-- ERROR FEEDBACK -->
-                        <div id="error_nama_barang" class="invalid-feedback error_nama_barang">
-                        </div>
-                    </div>
-                    <div class="col-sm-2 mb-1">
-                        <select class="form-control form-control-sm" name="jenis_barang" id="jenis_barang">
-                            <option selected hidden disabled>Jenis Barang</option>
-                            <option value="Mentah">Mentah</option>
-                            <option value="Setengah Jadi">Setengah Jadi</option>
-                            <option value="Jadi">Jadi</option>
-                        </select>
-                        <!-- ERROR FEEDBACK -->
-                        <div id="error_jenis_barang" class="invalid-feedback error_jenis_barang">
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <select class="form-control form-control-sm" style="width: 100%;" name="id_supplier" id="id_supplier">
-                            <option selected hidden disabled>Pilih Supplier</option>
-                            <?php foreach ($suppliers as $supplier) : ?>
-                                <option value="<?= $supplier['id_supplier'] ?>"><?= $supplier['kode_supplier'] ?> | <?= $supplier['nama_supplier'] ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                        <!-- ERROR FEEDBACK -->
-                        <div id="error_id_supplier" class="invalid-feedback error_id_supplier">
-                        </div>
-                    </div>
-                    <div class="col-sm-1">
-                        <button type="button" class="btn btn-danger btn-sm btn-block" id="hapusField"><i class="fas fa-trash"></i></button>
-                    </div>    
-                </div> 
+            var tambahanField = `
+            <tr id="fieldTambahan">
+                <td><input type="text" class="form-control form-control-sm"></td>
+                <td><input type="text" class="form-control form-control-sm"></td>
+                <td><input type="text" class="form-control form-control-sm"></td>
+                <td><input type="text" class="form-control form-control-sm"></td>
+                <td><button type="button" id="hapusField" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button></td>
+            </tr>
             `;
-            $('#newField').append(newField);
+            $('#tambahanField').append(tambahanField);
         });
         $("body").on("click", "#hapusField", function() {
-            $(this).parents("#tambahanField").remove();
-        })
+            $(this).parents("#fieldTambahan").remove();
+        });
 
 
 
-        $('.saveBarang').submit(function(e) {
+        $('.saveMultipleBarang').submit(function(e) {
             e.preventDefault();
             $.ajax({
                 type: "post",

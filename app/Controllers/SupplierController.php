@@ -47,6 +47,18 @@ class SupplierController extends BaseController
         }
     }
 
+    public function addMultipleSupplier()
+    {
+        if ($this->request->isAJAX()) {
+            $msg = [
+                'data' => view('supplier/add-multiple')
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Oops, Something went wrong');
+        }
+    }
+
     public function saveSupplier()
     {
         if ($this->request->isAJAX()) {
