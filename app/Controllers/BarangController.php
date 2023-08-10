@@ -140,8 +140,8 @@ class BarangController extends BaseController
 
     public function saveMultipleBarang()
     {
-        $BarangModel = new BarangModel();
         if ($this->request->isAJAX()) {
+            $BarangModel = new BarangModel();
             $kode_barang = $this->request->getVar('kode_barang');
             $id_supplier = $this->request->getVar('id_supplier');
             $nama_barang = $this->request->getVar('nama_barang');

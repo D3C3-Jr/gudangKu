@@ -113,7 +113,15 @@
 
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+                    alert();
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal',
+                        text: xhr.status + "\n" + xhr.responseText + "\n" + thrownError,
+                    });
+
+                    $('#addModal').modal('hide');
+                    readSuppliers();
                 }
             });
             return false;

@@ -32,6 +32,27 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
+    <style type="text/css">
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background-color: #fff;
+        }
+
+        .preloader .loading {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            font: 14px arial;
+        }
+    </style>
+
+
 
 </head>
 
@@ -99,6 +120,14 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
+
+                    <div class="preloader">
+                        <div class="loading">
+                            <div class="spinner-border" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
                     <!-- Page Heading -->
                     <h1 class="h5 mb-4 text-gray-800"><?= $sidebar ?> / <?= $title ?></h1>
 
@@ -170,6 +199,7 @@
 
 
     <script>
+        $(".preloader").fadeOut("slow");
         $('.readBarangMasuk').click(function() {
             readBarangMasuk();
         });
