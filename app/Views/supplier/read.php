@@ -46,11 +46,11 @@
                     filename: 'Suppliers',
                     title: 'Data Suppliers',
                     exportOptions: {
-                        modifier: {
-                            search: 'applied',
-                            order: 'applied',
-                            page: 'current'
-                        },
+                        // modifier: {
+                        //     search: 'applied',
+                        //     order: 'applied',
+                        //     page: 'current'
+                        // },
                         columns: [0, 1, 2, 3, 4, 5, 6, 7]
                     }
                 },
@@ -60,11 +60,11 @@
                     filename: 'Suppliers',
                     title: 'Data Suppliers',
                     exportOptions: {
-                        modifier: {
-                            search: 'applied',
-                            order: 'applied',
-                            page: 'current'
-                        },
+                        // modifier: {
+                        //     search: 'applied',
+                        //     order: 'applied',
+                        //     page: 'current'
+                        // },
                         columns: [0, 1, 2, 3, 4, 5, 6, 7]
                     }
                 },
