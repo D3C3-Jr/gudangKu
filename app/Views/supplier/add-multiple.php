@@ -1,6 +1,6 @@
 <!-- Modal -->
 <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Form Tambah Data</h5>
@@ -11,77 +11,35 @@
             <?= form_open('supplier/saveSupplier', ['class' => 'saveSupplier']) ?>
             <div class="modal-body">
 
-                <div class="form-group row">
-                    <label for="kode_supplier" class="col-sm-2 col-form-label col-form-label-sm">Kode</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="kode_supplier" class="form-control form-control-sm" id="kode_supplier" placeholder="Kode Supplier">
-                        <!-- ERROR FEEDBACK -->
-                        <div id="error_kode_supplier" class="invalid-feedback error_kode_supplier">
-                        </div>
-                    </div>
-                </div>
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <td>Kode Supplier</td>
+                            <td>Nama Supplier</td>
+                            <td>Alamat</td>
+                            <td>Kota</td>
+                            <td>No Telp</td>
+                            <td>Email</td>
+                            <td>Jenis </td>
+                            <td># </td>
+                        </tr>
+                    </thead>
+                    <tbody id="tambahanField">
+                        <tr>
+                            <td>
+                                <input type="text" name="kode_supplier" class="form-control form-control-sm" id="kode_supplier">
+                            </td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><button type="button" id="tambahField" class="btn btn-sm btn-info"><i class="fa fa-plus"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
 
-                <div class="form-group row">
-                    <label for="nama_supplier" class="col-sm-2 col-form-label col-form-label-sm">Nama</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="nama_supplier" class="form-control form-control-sm" id="nama_supplier" placeholder="Nama Supplier">
-                        <!-- ERROR FEEDBACK -->
-                        <div id="error_nama_supplier" class="invalid-feedback error_nama_supplier">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="alamat" class="col-sm-2 col-form-label col-form-label-sm">Alamat</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="alamat" class="form-control form-control-sm" id="alamat" placeholder="Alamat">
-                        <!-- ERROR FEEDBACK -->
-                        <div id="error_alamat" class="invalid-feedback error_alamat">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="kota" class="col-sm-2 col-form-label col-form-label-sm">Kota</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="kota" class="form-control form-control-sm" id="kota" placeholder="Kota">
-                        <!-- ERROR FEEDBACK -->
-                        <div id="error_kota" class="invalid-feedback error_kota">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="telp" class="col-sm-2 col-form-label col-form-label-sm">Nomor</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="telp" class="form-control form-control-sm" id="telp" placeholder="Nomor Telp">
-                        <!-- ERROR FEEDBACK -->
-                        <div id="error_telp" class="invalid-feedback error_telp">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="email" class="col-sm-2 col-form-label col-form-label-sm">Email</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="email" class="form-control form-control-sm" id="email" placeholder="Email">
-                        <!-- ERROR FEEDBACK -->
-                        <div id="error_email" class="invalid-feedback error_email">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="jenis_supplier" class="col-sm-2 col-form-label col-form-label-sm">Jenis</label>
-                    <div class="col-sm-10">
-                        <select class="form-control form-control-sm" name="jenis_supplier" id="jenis_supplier">
-                            <option selected hidden>Pilih Jenis Supplier</option>
-                            <option value="Barang">Barang</option>
-                            <option value="Jasa">Jasa</option>
-                            <option value="Barang & Jasa">Barang & Jasa</option>
-                        </select>
-                    </div>
-                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -94,6 +52,28 @@
 
 <script>
     $(document).ready(function() {
+
+        $('#tambahField').click(function() {
+            var tambahanField = `
+            <tr id="fieldTambahan">
+                <td>
+                    <input type="text" name="kode_supplier" class="form-control form-control-sm" id="kode_supplier"
+                </td>
+                <td><input type="text" class="form-control form-control-sm"></td>
+                <td><input type="text" class="form-control form-control-sm"></td>
+                <td><input type="text" class="form-control form-control-sm"></td>
+                <td><input type="text" class="form-control form-control-sm"></td>
+                <td><input type="text" class="form-control form-control-sm"></td>
+                <td><input type="text" class="form-control form-control-sm"></td>
+                <td><button type="button" id="hapusField" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button></td>
+            </tr>
+            `;
+            $('#tambahanField').append(tambahanField);
+        });
+        $("body").on("click", "#hapusField", function() {
+            $(this).parents("#fieldTambahan").remove();
+        });
+
         $('.saveSupplier').submit(function(e) {
             e.preventDefault();
             $.ajax({
