@@ -14,7 +14,7 @@
                 <div class="form-group row">
                     <label for="kode_barang" class="col-sm-2 col-form-label col-form-label-sm">Kode</label>
                     <div class="col-sm-10">
-                        <input type="text" name="kode_barang" class="form-control form-control-sm" id="kode_barang" value="<?= date('YmdHis') ?>" readonly>
+                        <input type="text" name="kode_barang" class="form-control form-control-sm" id="kode_barang">
                         <!-- ERROR FEEDBACK -->
                         <div id="error_kode_barang" class="invalid-feedback error_kode_barang">
                         </div>

@@ -10,7 +10,7 @@
             </div>
             <?= form_open('barang/saveMultipleBarang', ['class' => 'saveMultipleBarang']) ?>
             <div class="modal-body">
-
+                <small class="text-danger">1. Kode Barang tidak boleh sama</small>
                 <table class="table table-sm">
                     <thead>
                         <tr>
@@ -23,10 +23,18 @@
                     </thead>
                     <tbody id="tambahanField">
                         <tr>
-                            <td><input type="text" class="form-control form-control-sm"></td>
-                            <td><input type="text" class="form-control form-control-sm"></td>
-                            <td><input type="text" class="form-control form-control-sm"></td>
-                            <td><input type="text" class="form-control form-control-sm"></td>
+                            <td><input type="text" name="kode_barang[]" class="form-control form-control-sm"></td>
+                            <td>
+                                <select class="form-control form-control-sm" style="width: 100%;" name="id_supplier[]" id="id_supplier">
+                                    <option selected hidden disabled>Pilih Supplier</option>
+                                    <?php $no = 1;
+                                    foreach ($suppliers as $supplier) : ?>
+                                        <option value="<?= $supplier['id_supplier'] ?>"><?= $no++ ?>. <?= $supplier['nama_supplier'] ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </td>
+                            <td><input type="text" name="nama_barang[]" class="form-control form-control-sm"></td>
+                            <td><input type="text" name="jenis_barang[]" class="form-control form-control-sm"></td>
                             <td><button type="button" id="tambahField" class="btn btn-sm btn-info"><i class="fa fa-plus"></i></button></td>
                         </tr>
                     </tbody>
@@ -45,15 +53,23 @@
 <script>
     $(document).ready(function() {
 
-        $('#id_supplier').select2();
+        // $('#id_supplier').select2();
 
         $('#tambahField').click(function() {
             var tambahanField = `
             <tr id="fieldTambahan">
-                <td><input type="text" class="form-control form-control-sm"></td>
-                <td><input type="text" class="form-control form-control-sm"></td>
-                <td><input type="text" class="form-control form-control-sm"></td>
-                <td><input type="text" class="form-control form-control-sm"></td>
+                <td><input type="text" name="kode_barang[]" class="form-control form-control-sm"></td>
+                <td>
+                    <select class="form-control form-control-sm" style="width: 100%;" name="id_supplier[]" id="id_supplier">
+                        <option selected hidden disabled>Pilih Supplier</option>
+                        <?php $no = 1;
+                        foreach ($suppliers as $supplier) : ?>
+                                <option value="<?= $supplier['id_supplier'] ?>"><?= $no++ ?>. <?= $supplier['nama_supplier'] ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </td>
+                <td><input type="text" name="nama_barang[]" class="form-control form-control-sm"></td>
+                <td><input type="text" name="jenis_barang[]" class="form-control form-control-sm"></td>
                 <td><button type="button" id="hapusField" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button></td>
             </tr>
             `;
@@ -62,8 +78,6 @@
         $("body").on("click", "#hapusField", function() {
             $(this).parents("#fieldTambahan").remove();
         });
-
-
 
         $('.saveMultipleBarang').submit(function(e) {
             e.preventDefault();
@@ -80,41 +94,9 @@
                     $('.btnSave').removeAttr('disabled');
                     $('.btnSave').html('Save changes');
                 },
+
                 success: function(response) {
-                    if (response.error) {
-                        if (response.error.kode_barang) {
-                            $('#kode_barang').addClass('is-invalid');
-                            $('.error_kode_barang').html(response.error.kode_barang);
-                        } else {
-                            $('#kode_barang').removeClass('is-invalid');
-                            $('.error_kode_barang').html();
-                        }
-
-                        if (response.error.nama_barang) {
-                            $('#nama_barang').addClass('is-invalid');
-                            $('.error_nama_barang').html(response.error.nama_barang);
-                        } else {
-                            $('#nama_barang').removeClass('is-invalid');
-                            $('.error_nama_barang').html();
-                        }
-
-                        if (response.error.id_supplier) {
-                            $('#id_supplier').addClass('is-invalid');
-                            $('.error_id_supplier').html(response.error.id_supplier);
-                        } else {
-                            $('#id_supplier').removeClass('is-invalid');
-                            $('.error_id_supplier').html();
-                        }
-
-                        if (response.error.jenis_barang) {
-                            $('#jenis_barang').addClass('is-invalid');
-                            $('.error_jenis_barang').html(response.error.jenis_barang);
-                        } else {
-                            $('#jenis_barang').removeClass('is-invalid');
-                            $('.error_jenis_barang').html();
-                        }
-
-                    } else {
+                    if (response.success) {
                         Swal.fire({
                             icon: 'success',
                             title: 'Berhasil',
@@ -126,7 +108,14 @@
                     }
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+                    // alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: xhr.status + "\n" + xhr.responseText + "\n" + thrownError,
+                    });
+                    $('#addModalBarang').modal('hide');
+                    readBarang();
                 }
             });
             return false;

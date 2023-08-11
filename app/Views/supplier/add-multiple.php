@@ -8,7 +8,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <?= form_open('supplier/saveSupplier', ['class' => 'saveSupplier']) ?>
+            <?= form_open('supplier/saveMultipleSupplier', ['class' => 'saveMultipleSupplier']) ?>
             <div class="modal-body">
 
                 <table class="table table-sm">
@@ -26,15 +26,20 @@
                     </thead>
                     <tbody id="tambahanField">
                         <tr>
+                            <td><input type="text" name="kode_supplier[]" class="form-control form-control-sm" id="kode_supplier"></td>
+                            <td><input type="text" name="nama_supplier[]" class="form-control form-control-sm"></td>
+                            <td><input type="text" name="alamat[]" class="form-control form-control-sm"></td>
+                            <td><input type="text" name="kota[]" class="form-control form-control-sm"></td>
+                            <td><input type="text" name="telp[]" class="form-control form-control-sm"></td>
+                            <td><input type="text" name="email[]" class="form-control form-control-sm"></td>
                             <td>
-                                <input type="text" name="kode_supplier" class="form-control form-control-sm" id="kode_supplier">
+                                <select class="form-control form-control-sm" name="jenis_supplier[]" id="jenis_supplier">
+                                    <option selected hidden>Pilih Jenis Supplier</option>
+                                    <option value="Barang">Barang</option>
+                                    <option value="Jasa">Jasa</option>
+                                    <option value="Barang & Jasa">Barang & Jasa</option>
+                                </select>
                             </td>
-                            <td><input type="text" class="form-control form-control-sm"></td>
-                            <td><input type="text" class="form-control form-control-sm"></td>
-                            <td><input type="text" class="form-control form-control-sm"></td>
-                            <td><input type="text" class="form-control form-control-sm"></td>
-                            <td><input type="text" class="form-control form-control-sm"></td>
-                            <td><input type="text" class="form-control form-control-sm"></td>
                             <td><button type="button" id="tambahField" class="btn btn-sm btn-info"><i class="fa fa-plus"></i></button></td>
                         </tr>
                     </tbody>
@@ -56,15 +61,20 @@
         $('#tambahField').click(function() {
             var tambahanField = `
             <tr id="fieldTambahan">
+                <td><input type="text" name="kode_supplier[]" class="form-control form-control-sm" id="kode_supplier"></td>
+                <td><input type="text" name="nama_supplier[]" class="form-control form-control-sm"></td>
+                <td><input type="text" name="alamat[]" class="form-control form-control-sm"></td>
+                <td><input type="text" name="kota[]" class="form-control form-control-sm"></td>
+                <td><input type="text" name="telp[]" class="form-control form-control-sm"></td>
+                <td><input type="text" name="email[]" class="form-control form-control-sm"></td>
                 <td>
-                    <input type="text" name="kode_supplier" class="form-control form-control-sm" id="kode_supplier"
+                    <select class="form-control form-control-sm" name="jenis_supplier[]" id="jenis_supplier">
+                        <option selected hidden>Pilih Jenis Supplier</option>
+                        <option value="Barang">Barang</option>
+                        <option value="Jasa">Jasa</option>
+                        <option value="Barang & Jasa">Barang & Jasa</option>
+                    </select>
                 </td>
-                <td><input type="text" class="form-control form-control-sm"></td>
-                <td><input type="text" class="form-control form-control-sm"></td>
-                <td><input type="text" class="form-control form-control-sm"></td>
-                <td><input type="text" class="form-control form-control-sm"></td>
-                <td><input type="text" class="form-control form-control-sm"></td>
-                <td><input type="text" class="form-control form-control-sm"></td>
                 <td><button type="button" id="hapusField" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button></td>
             </tr>
             `;
@@ -74,7 +84,7 @@
             $(this).parents("#fieldTambahan").remove();
         });
 
-        $('.saveSupplier').submit(function(e) {
+        $('.saveMultipleSupplier').submit(function(e) {
             e.preventDefault();
             $.ajax({
                 type: "post",
@@ -90,56 +100,7 @@
                     $('.btnSave').html('Save changes');
                 },
                 success: function(response) {
-                    if (response.error) {
-                        if (response.error.kode_supplier) {
-                            $('#kode_supplier').addClass('is-invalid');
-                            $('.error_kode_supplier').html(response.error.kode_supplier);
-                        } else {
-                            $('#kode_supplier').removeClass('is-invalid');
-                            $('.error_kode_supplier').html();
-                        }
-
-                        if (response.error.nama_supplier) {
-                            $('#nama_supplier').addClass('is-invalid');
-                            $('.error_nama_supplier').html(response.error.nama_supplier);
-                        } else {
-                            $('#nama_supplier').removeClass('is-invalid');
-                            $('.error_nama_supplier').html();
-                        }
-
-                        if (response.error.alamat) {
-                            $('#alamat').addClass('is-invalid');
-                            $('.error_alamat').html(response.error.alamat);
-                        } else {
-                            $('#alamat').removeClass('is-invalid');
-                            $('.error_alamat').html();
-                        }
-
-                        if (response.error.kota) {
-                            $('#kota').addClass('is-invalid');
-                            $('.error_kota').html(response.error.kota);
-                        } else {
-                            $('#kota').removeClass('is-invalid');
-                            $('.error_kota').html();
-                        }
-
-                        if (response.error.telp) {
-                            $('#telp').addClass('is-invalid');
-                            $('.error_telp').html(response.error.telp);
-                        } else {
-                            $('#telp').removeClass('is-invalid');
-                            $('.error_telp').html();
-                        }
-
-                        if (response.error.email) {
-                            $('#email').addClass('is-invalid');
-                            $('.error_email').html(response.error.email);
-                        } else {
-                            $('#email').removeClass('is-invalid');
-                            $('.error_email').html();
-                        }
-
-                    } else {
+                    if (response.success) {
                         Swal.fire({
                             icon: 'success',
                             title: 'Berhasil',
@@ -149,9 +110,18 @@
                         $('#addModal').modal('hide');
                         readSuppliers();
                     }
+
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+                    alert();
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal',
+                        text: xhr.status + "\n" + xhr.responseText + "\n" + thrownError,
+                    });
+
+                    $('#addModal').modal('hide');
+                    readSuppliers();
                 }
             });
             return false;

@@ -141,64 +141,25 @@ class BarangController extends BaseController
     public function saveMultipleBarang()
     {
         if ($this->request->isAJAX()) {
-            $validation = \Config\Services::validation();
-            $valid = $this->validate([
-                'kode_barang' => [
-                    'label' => 'Kode Barang',
-                    'rules' => 'required|is_unique[barang.kode_barang]',
-                    'errors' => [
-                        'required' => '{field} Harus diisi',
-                        'is_unique' => '{field} Sudah ada'
-                    ]
-                ],
+            $BarangModel = new BarangModel();
+            $kode_barang = $this->request->getVar('kode_barang');
+            $id_supplier = $this->request->getVar('id_supplier');
+            $nama_barang = $this->request->getVar('nama_barang');
+            $jenis_barang = $this->request->getVar('jenis_barang');
 
-                'nama_barang' => [
-                    'label' => 'Nama Barang',
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => '{field} Harus diisi',
-                    ]
-                ],
+            $jumlahData = count($kode_barang);
 
-                'id_supplier' => [
-                    'label' => 'Supplier',
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => '{field} Harus diisi',
-                    ]
-                ],
-
-                'jenis_barang' => [
-                    'label' => 'Jenis Barang',
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => '{field} Harus diisi',
-                    ]
-                ],
-
-            ]);
-            if (!$valid) {
-                $msg = [
-                    'error' => [
-                        'kode_barang' => $validation->getError('kode_barang'),
-                        'nama_barang' => $validation->getError('nama_barang'),
-                        'id_supplier' => $validation->getError('id_supplier'),
-                        'jenis_barang' => $validation->getError('jenis_barang'),
-                    ]
-                ];
-            } else {
-                $save = [
-                    'kode_barang' => $this->request->getVar('kode_barang'),
-                    'id_supplier' => $this->request->getVar('id_supplier'),
-                    'nama_barang' => $this->request->getVar('nama_barang'),
-                    'jenis_barang' => $this->request->getVar('jenis_barang'),
-                ];
-                $barang = new BarangModel();
-                $barang->insert($save);
-                $msg = [
-                    'success' => 'Data berhasil di tambahkan'
-                ];
+            for ($i = 0; $i < $jumlahData; $i++) {
+                $BarangModel->insert([
+                    'kode_barang' => $kode_barang[$i],
+                    'id_supplier' => $id_supplier[$i],
+                    'nama_barang' => $nama_barang[$i],
+                    'jenis_barang' => $jenis_barang[$i],
+                ]);
             }
+            $msg = [
+                'success' => "$jumlahData Berhasil di simpan"
+            ];
             echo json_encode($msg);
         } else {
             exit('Oops, Something went wrong');
