@@ -11,7 +11,7 @@
             <?= form_open('supplier/saveMultipleSupplier', ['class' => 'saveMultipleSupplier']) ?>
             <div class="modal-body">
 
-                <table class="table table-sm">
+                <table class="table table-sm table-responsive">
                     <thead>
                         <tr>
                             <td>Kode Supplier</td>
@@ -26,7 +26,7 @@
                     </thead>
                     <tbody id="tambahanField">
                         <tr>
-                            <td><input type="text" name="kode_supplier[]" class="form-control form-control-sm" id="kode_supplier"></td>
+                            <td><input type="text" name="kode_supplier[]" class="form-control form-control-sm" id="kode_supplier" required></td>
                             <td><input type="text" name="nama_supplier[]" class="form-control form-control-sm"></td>
                             <td><input type="text" name="alamat[]" class="form-control form-control-sm"></td>
                             <td><input type="text" name="kota[]" class="form-control form-control-sm"></td>
@@ -61,7 +61,7 @@
         $('#tambahField').click(function() {
             var tambahanField = `
             <tr id="fieldTambahan">
-                <td><input type="text" name="kode_supplier[]" class="form-control form-control-sm" id="kode_supplier"></td>
+                <td><input type="text" name="kode_supplier[]" class="form-control form-control-sm" id="kode_supplier" required></td>
                 <td><input type="text" name="nama_supplier[]" class="form-control form-control-sm"></td>
                 <td><input type="text" name="alamat[]" class="form-control form-control-sm"></td>
                 <td><input type="text" name="kota[]" class="form-control form-control-sm"></td>
@@ -113,7 +113,6 @@
 
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
-                    alert();
                     Swal.fire({
                         icon: 'error',
                         title: 'Gagal',

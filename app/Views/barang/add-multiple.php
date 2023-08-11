@@ -23,7 +23,7 @@
                     </thead>
                     <tbody id="tambahanField">
                         <tr>
-                            <td><input type="text" name="kode_barang[]" class="form-control form-control-sm"></td>
+                            <td><input type="text" name="kode_barang[]" class="form-control form-control-sm" required></td>
                             <td>
                                 <select class="form-control form-control-sm" style="width: 100%;" name="id_supplier[]" id="id_supplier">
                                     <option selected hidden disabled>Pilih Supplier</option>
@@ -58,9 +58,9 @@
         $('#tambahField').click(function() {
             var tambahanField = `
             <tr id="fieldTambahan">
-                <td><input type="text" name="kode_barang[]" class="form-control form-control-sm"></td>
+                <td><input type="text" name="kode_barang[]" class="form-control form-control-sm" required></td>
                 <td>
-                    <select class="form-control form-control-sm" style="width: 100%;" name="id_supplier[]" id="id_supplier">
+                    <select class="form-control form-control-sm" style="width: 100%;" name="id_supplier[]" id="id_supplier1">
                         <option selected hidden disabled>Pilih Supplier</option>
                         <?php $no = 1;
                         foreach ($suppliers as $supplier) : ?>
@@ -74,6 +74,8 @@
             </tr>
             `;
             $('#tambahanField').append(tambahanField);
+
+
         });
         $("body").on("click", "#hapusField", function() {
             $(this).parents("#fieldTambahan").remove();
@@ -94,7 +96,6 @@
                     $('.btnSave').removeAttr('disabled');
                     $('.btnSave').html('Save changes');
                 },
-
                 success: function(response) {
                     if (response.success) {
                         Swal.fire({

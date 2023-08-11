@@ -10,6 +10,7 @@
                 <button class="btn btn-primary btn-sm mb-2 readBarang" hidden>Lihat Data</button>
                 <button class="btn btn-primary btn-sm mb-2 addBarang" hidden><i class="fas fa-plus"></i></button>
                 <button class="btn btn-success btn-sm mb-2 addMultipleBarang" hidden>Tambah Banyak Data</button>
+                <button class="btn btn-danger btn-sm mb-2 deleteMultipleBarang" hidden>Hapus Banyak Data</button>
             </div>
             <!-- Card Body -->
             <div class="card-body">
@@ -32,6 +33,8 @@
         });
         $('.readBarang').click(function() {
             readBarang();
+            $('.deleteMultipleBarang').attr('hidden', true);
+
         });
     });
 
@@ -45,6 +48,22 @@
                 $('.addMultipleBarang').removeAttr("hidden");
                 $('.readBarang').removeAttr("hidden");
                 $('.readBarang').html('<i class="fa fa-arrows-rotate"></i>');
+
+                $('#selectAll').on('click', function() {
+                    if (this.checked) {
+                        $('.checkbox').each(function() {
+                            this.checked = true;
+                            $('.deleteMultipleBarang').removeAttr('hidden');
+                        });
+                    } else {
+                        $('.checkbox').each(function() {
+                            this.checked = false;
+                            $('.deleteMultipleBarang').attr('hidden', true);
+
+                        });
+                    }
+
+                });
             },
             error: function(xhr, ajaxOptions, thrownError) {
                 alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);

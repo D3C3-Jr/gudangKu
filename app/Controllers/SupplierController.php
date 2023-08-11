@@ -172,7 +172,6 @@ class SupplierController extends BaseController
                     'jenis_supplier'    => $jenis_supplier[$i],
                 ]);
             }
-
             $msg = [
                 'success' => "$jumlahData Data berhasil di simpan"
             ];

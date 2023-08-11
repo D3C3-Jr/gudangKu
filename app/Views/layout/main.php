@@ -200,6 +200,7 @@
 
     <script>
         $(".preloader").fadeOut("slow");
+
         $('.readBarangMasuk').click(function() {
             readBarangMasuk();
         });

@@ -38,7 +38,7 @@ $routes->get('/supplier/readSupplier', 'SupplierController::readSupplier');
 $routes->get('/supplier/addSupplier', 'SupplierController::addSupplier');
 $routes->get('/supplier/addMultipleSupplier', 'SupplierController::addMultipleSupplier');
 $routes->post('/supplier/saveSupplier', 'SupplierController::saveSupplier');
-$routes->post('/supplier/saveMultipleSupplier', 'SupplierController::saveMultipleSupplier');
+$routes->post('supplier/saveMultipleSupplier', 'SupplierController::saveMultipleSupplier');
 
 $routes->get('/barang', 'BarangController::index');
 $routes->get('/barang/readBarang', 'BarangController::readBarang');
