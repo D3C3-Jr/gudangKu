@@ -165,4 +165,25 @@ class BarangController extends BaseController
             exit('Oops, Something went wrong');
         }
     }
+
+    public function deleteMultipleBarang()
+    {
+        if ($this->request->isAJAX()) {
+            $BarangModel = new BarangModel();
+            $id_barang = $this->request->getVar('id_barang');
+            $jumlahData = count($id_barang);
+
+            for ($i = 0; $i < $jumlahData; $i++) {
+                $BarangModel->delete([
+                    'id_barang' => $id_barang[$i],
+                ]);
+            }
+            $msg = [
+                'success' => "$jumlahData Berhasil di hapus"
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Oops, Something went wrong');
+        }
+    }
 }

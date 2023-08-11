@@ -46,6 +46,7 @@ $routes->get('/barang/addBarang', 'BarangController::addBarang');
 $routes->get('/barang/addMultipleBarang', 'BarangController::addMultipleBarang');
 $routes->post('/barang/saveBarang', 'BarangController::saveBarang');
 $routes->post('barang/saveMultipleBarang', 'BarangController::saveMultipleBarang');
+$routes->get('barang/deleteMultipleBarang', 'BarangController::deleteMultipleBarang');
 
 $routes->get('/barangMasuk', 'BarangMasukController::index');
 $routes->get('/barangMasuk/readBarangMasuk', 'BarangMasukController::readBarangMasuk');
