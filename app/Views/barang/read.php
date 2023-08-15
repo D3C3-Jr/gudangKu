@@ -24,7 +24,7 @@
                     <td><?= $barang['nama_barang'] ?></td>
                     <td><?= $barang['jenis_barang'] ?></td>
                     <td>
-                        <button type="button" class="btn btn-circle btn-sm btn-danger" onclick="hapus('<?= $barang['id_barang'] ?>')"><i class="fa fa-trash"></i></button>
+                        <button type="button" class="btn btn-circle btn-sm btn-danger deleteBarang" data-id_barang="<?= $barang['id_barang'] ?>"><i class="fa fa-trash"></i></button>
                         <button type="button" class="btn btn-circle btn-sm btn-info" onclick="edit('<?= $barang['id_barang'] ?>')"><i class="fa fa-pencil"></i></button>
                     </td>
                 </tr>
@@ -36,6 +36,51 @@
 
 <script>
     $(document).ready(function() {
+
+        $('.deleteBarang').click(function() {
+            var id_barang = $(this).data('id_barang');
+            var urlDelete = "<?= site_url('barang/deleteBarang/'); ?>" + id_barang;
+
+            Swal.fire({
+                title: 'Anda yakin?',
+                text: `Anda akan menghapus Data`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: urlDelete,
+                        type: 'DELETE',
+                        success: function(response) {
+                            if (response.success) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Berhasil',
+                                    text: `Data berhasil di hapus`,
+                                })
+                                readBarang();
+                            }
+                        },
+                        error: function(xhr, ajaxOptions, thrownError) {
+                            alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+                        }
+                    });
+                }
+            })
+            // $.ajax({
+            //     url: urlDelete,
+            //     type: 'DELETE',
+            //     success: function(response) {
+
+            //     },
+            //     error: function() {
+            //         alert('Errror')
+            //     }
+            // });
+        });
 
         $('#selectAll').click(function(e) {
             if ($(this).is(':checked')) {
@@ -65,24 +110,26 @@
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Yes, delete it!'
                 }).then((result) => {
-                    $.ajax({
-                        url: $(this).attr('action'),
-                        data: $(this).serialize(),
-                        dataType: "json",
-                        success: function(response) {
-                            if (response.success) {
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: 'Berhasil',
-                                    text: `${jumlahData.length} Data berhasil di hapus`,
-                                })
-                                readBarang();
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: $(this).attr('action'),
+                            data: $(this).serialize(),
+                            dataType: "json",
+                            success: function(response) {
+                                if (response.success) {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Berhasil',
+                                        text: `${jumlahData.length} Data berhasil di hapus`,
+                                    })
+                                    readBarang();
+                                }
+                            },
+                            error: function(xhr, ajaxOptions, thrownError) {
+                                alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
                             }
-                        },
-                        error: function(xhr, ajaxOptions, thrownError) {
-                            alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
-                        }
-                    });
+                        });
+                    }
                 })
             }
             return false

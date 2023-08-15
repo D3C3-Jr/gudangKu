@@ -12,11 +12,11 @@
             <div class="modal-body">
 
                 <div class="form-group row">
-                    <label for="kode_barang" class="col-sm-2 col-form-label col-form-label-sm">Kode</label>
+                    <label for="kode_barangg" class="col-sm-2 col-form-label col-form-label-sm">Kode</label>
                     <div class="col-sm-10">
-                        <input type="text" name="kode_barang" class="form-control form-control-sm" id="kode_barang">
+                        <input type="text" name="kode_barangg" class="form-control form-control-sm" id="kode_barangg" placeholder="Kode Barang">
                         <!-- ERROR FEEDBACK -->
-                        <div id="error_kode_barang" class="invalid-feedback error_kode_barang">
+                        <div id="error_kode_barangg" class="invalid-feedback error_kode_barangg">
                         </div>
                     </div>
                 </div>
@@ -30,6 +30,9 @@
                                 <option value="<?= $supplier['id_supplier'] ?>"><?= $supplier['kode_supplier'] ?> | <?= $supplier['nama_supplier'] ?></option>
                             <?php endforeach; ?>
                         </select>
+                        <!-- ERROR FEEDBACK -->
+                        <div id="error_id_supplier" class="invalid-feedback error_id_supplier">
+                        </div>
                     </div>
                 </div>
 
@@ -47,11 +50,14 @@
                     <label for="jenis_barang" class="col-sm-2 col-form-label col-form-label-sm">Jenis</label>
                     <div class="col-sm-10">
                         <select class="form-control form-control-sm" name="jenis_barang" id="jenis_barang">
-                            <option selected hidden>Pilih Jenis Barang</option>
+                            <option selected hidden disabled>Pilih Jenis Barang</option>
                             <option value="Mentah">Mentah</option>
                             <option value="Setengah Jadi">Setengah Jadi</option>
                             <option value="Jadi">Jadi</option>
                         </select>
+                        <!-- ERROR FEEDBACK -->
+                        <div id="error_jenis_barang" class="invalid-feedback error_jenis_barang">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -84,13 +90,13 @@
                 },
                 success: function(response) {
                     if (response.error) {
-                        if (response.error.kode_barang) {
-                            $('#kode_barang').addClass('is-invalid');
-                            $('.error_kode_barang').html(response.error.kode_barang);
+                        if (response.error.kode_barangg) {
+                            $('#kode_barangg').addClass('is-invalid');
+                            $('.error_kode_barangg').html(response.error.kode_barangg);
                         } else {
-                            $('#kode_barang').removeClass('is-invalid');
-                            $('.error_kode_barang').html();
-                        }
+                            $('#kode_barangg').removeClass('is-invalid');
+                            $('.error_kode_barangg').html();
+                        };
 
                         if (response.error.nama_barang) {
                             $('#nama_barang').addClass('is-invalid');
@@ -98,7 +104,23 @@
                         } else {
                             $('#nama_barang').removeClass('is-invalid');
                             $('.error_nama_barang').html();
-                        }
+                        };
+
+                        if (response.error.id_supplier) {
+                            $('#id_supplier').addClass('is-invalid');
+                            $('.error_id_supplier').html(response.error.id_supplier);
+                        } else {
+                            $('#id_supplier').removeClass('is-invalid');
+                            $('.error_id_supplier').html();
+                        };
+
+                        if (response.error.jenis_barang) {
+                            $('#jenis_barang').addClass('is-invalid');
+                            $('.error_jenis_barang').html(response.error.jenis_barang);
+                        } else {
+                            $('#jenis_barang').removeClass('is-invalid');
+                            $('.error_jenis_barang').html();
+                        };
 
                     } else {
                         Swal.fire({
