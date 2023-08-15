@@ -34,7 +34,14 @@
                                 </select>
                             </td>
                             <td><input type="text" name="nama_barang[]" class="form-control form-control-sm"></td>
-                            <td><input type="text" name="jenis_barang[]" class="form-control form-control-sm"></td>
+                            <td>
+                                <select class="form-control form-control-sm" name="jenis_barang[]" id="jenis_barang">
+                                    <option selected hidden disabled>Pilih Jenis Barang</option>
+                                    <option value="Mentah">Mentah</option>
+                                    <option value="Setengah Jadi">Setengah Jadi</option>
+                                    <option value="Jadi">Jadi</option>
+                                </select>
+                            </td>
                             <td><button type="button" id="tambahField" class="btn btn-sm btn-info"><i class="fa fa-plus"></i></button></td>
                         </tr>
                     </tbody>
@@ -69,7 +76,14 @@
                     </select>
                 </td>
                 <td><input type="text" name="nama_barang[]" class="form-control form-control-sm"></td>
-                <td><input type="text" name="jenis_barang[]" class="form-control form-control-sm"></td>
+                <td>
+                    <select class="form-control form-control-sm" name="jenis_barang[]" id="jenis_barang">
+                        <option selected hidden disabled>Pilih Jenis Barang</option>
+                        <option value="Mentah">Mentah</option>
+                        <option value="Setengah Jadi">Setengah Jadi</option>
+                        <option value="Jadi">Jadi</option>
+                    </select>
+                </td>
                 <td><button type="button" id="hapusField" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button></td>
             </tr>
             `;

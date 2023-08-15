@@ -10,7 +10,7 @@
                 <th>Supplier</th>
                 <th>Nama Barang</th>
                 <th>Jenis Barang</th>
-                <th>Action</th>
+                <th class="text-center">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -23,9 +23,9 @@
                     <td><?= $barang['nama_supplier'] ?></td>
                     <td><?= $barang['nama_barang'] ?></td>
                     <td><?= $barang['jenis_barang'] ?></td>
-                    <td>
+                    <td class="text-center">
                         <button type="button" class="btn btn-circle btn-sm btn-danger deleteBarang" data-id_barang="<?= $barang['id_barang'] ?>"><i class="fa fa-trash"></i></button>
-                        <button type="button" class="btn btn-circle btn-sm btn-info" onclick="edit('<?= $barang['id_barang'] ?>')"><i class="fa fa-pencil"></i></button>
+                        <!-- <button type="button" class="btn btn-circle btn-sm btn-info editBarang" data-id_barang="<?= $barang['id_barang'] ?>" data-kode_barang="<?= $barang['kode_barang'] ?>"><i class="fa fa-pencil"></i></button> -->
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -37,6 +37,7 @@
 <script>
     $(document).ready(function() {
 
+        // HAPUS BARANG SATUAN
         $('.deleteBarang').click(function() {
             var id_barang = $(this).data('id_barang');
             var urlDelete = "<?= site_url('barang/deleteBarang/'); ?>" + id_barang;
@@ -70,18 +71,9 @@
                     });
                 }
             })
-            // $.ajax({
-            //     url: urlDelete,
-            //     type: 'DELETE',
-            //     success: function(response) {
-
-            //     },
-            //     error: function() {
-            //         alert('Errror')
-            //     }
-            // });
         });
 
+        // CEKLIS SEMUA DATA
         $('#selectAll').click(function(e) {
             if ($(this).is(':checked')) {
                 $('.checkbox').prop('checked', true);
@@ -90,6 +82,7 @@
             }
         });
 
+        // DELETE BARANG BANYAK
         $('.deleteMultipleBarang').submit(function(e) {
             e.preventDefault();
             let jumlahData = $('.checkbox:checked');
@@ -130,25 +123,14 @@
                             }
                         });
                     }
-                    // <<<<<<< Updated upstream
-                    // =======
-                    // <<<<<<< Updated upstream
-                    // =======
-
-                    // >>>>>>> Stashed changes
-                    // >>>>>>> Stashed changes
                 })
             }
             return false
         })
 
+        // DATA TABLE
         $('#dataTable').DataTable({
             responsive: true,
-
-            // fixedHeader: {
-            //     header: true,
-            //     footer: true
-            // },
             dom: 'Bfrtip',
             buttons: [{
                     extend: 'excel',
@@ -184,5 +166,6 @@
             // scrollX: false,
             // scrollY: 400
         });
+
     });
 </script>

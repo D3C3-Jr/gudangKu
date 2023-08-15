@@ -22,7 +22,6 @@
 
 <script>
     $(document).ready(function() {
-
         readBarang();
         $('.addBarang').click(function() {
             addBarang();
