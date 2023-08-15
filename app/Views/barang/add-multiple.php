@@ -25,7 +25,7 @@
                         <tr>
                             <td><input type="text" name="kode_barang[]" class="form-control form-control-sm" required></td>
                             <td>
-                                <select class="form-control form-control-sm" style="width: 100%;" name="id_supplier[]" id="id_supplier">
+                                <select class="form-control form-control-sm id_supplier" style="width: 100%;" name="id_supplier[]" id="id_supplier">
                                     <option selected hidden disabled>Pilih Supplier</option>
                                     <?php $no = 1;
                                     foreach ($suppliers as $supplier) : ?>
@@ -53,14 +53,14 @@
 <script>
     $(document).ready(function() {
 
-        // $('#id_supplier').select2();
+        // $('.id_supplier').select2();
 
         $('#tambahField').click(function() {
             var tambahanField = `
             <tr id="fieldTambahan">
                 <td><input type="text" name="kode_barang[]" class="form-control form-control-sm" required></td>
                 <td>
-                    <select class="form-control form-control-sm" style="width: 100%;" name="id_supplier[]" id="id_supplier1">
+                    <select class="form-control form-control-sm id_supplier" style="width: 100%;" name="id_supplier[]" id="id_supplier1">
                         <option selected hidden disabled>Pilih Supplier</option>
                         <?php $no = 1;
                         foreach ($suppliers as $supplier) : ?>
@@ -73,6 +73,7 @@
                 <td><button type="button" id="hapusField" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button></td>
             </tr>
             `;
+            // $('.id_supplier').select2();
             $('#tambahanField').append(tambahanField);
 
 

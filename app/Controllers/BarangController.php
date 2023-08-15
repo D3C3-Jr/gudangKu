@@ -76,7 +76,7 @@ class BarangController extends BaseController
         if ($this->request->isAJAX()) {
             $validation = \Config\Services::validation();
             $valid = $this->validate([
-                'kode_barang' => [
+                'kode_barangg' => [
                     'label' => 'Kode Barang',
                     'rules' => 'required|is_unique[barang.kode_barang]',
                     'errors' => [
@@ -113,15 +113,15 @@ class BarangController extends BaseController
             if (!$valid) {
                 $msg = [
                     'error' => [
-                        'kode_barang' => $validation->getError('kode_barang'),
                         'nama_barang' => $validation->getError('nama_barang'),
                         'id_supplier' => $validation->getError('id_supplier'),
+                        'kode_barangg' => $validation->getError('kode_barangg'),
                         'jenis_barang' => $validation->getError('jenis_barang'),
                     ]
                 ];
             } else {
                 $save = [
-                    'kode_barang' => $this->request->getVar('kode_barang'),
+                    'kode_barangg' => $this->request->getVar('kode_barangg'),
                     'id_supplier' => $this->request->getVar('id_supplier'),
                     'nama_barang' => $this->request->getVar('nama_barang'),
                     'jenis_barang' => $this->request->getVar('jenis_barang'),
@@ -185,5 +185,13 @@ class BarangController extends BaseController
         } else {
             exit('Oops, Something went wrong');
         }
+    }
+
+    public function deleteBarang($id_barang)
+    {
+        $BarangModel = new BarangModel();
+        $BarangModel->delete($id_barang);
+
+        return $this->response->setJSON(['success' => true]);
     }
 }
