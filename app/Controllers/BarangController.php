@@ -121,7 +121,7 @@ class BarangController extends BaseController
                 ];
             } else {
                 $save = [
-                    'kode_barangg' => $this->request->getVar('kode_barangg'),
+                    'kode_barang' => $this->request->getVar('kode_barangg'),
                     'id_supplier' => $this->request->getVar('id_supplier'),
                     'nama_barang' => $this->request->getVar('nama_barang'),
                     'jenis_barang' => $this->request->getVar('jenis_barang'),
