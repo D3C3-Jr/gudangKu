@@ -214,13 +214,6 @@
         $('.addBarangKeluar').click(function() {
             addBarangKeluar();
         });
-
-        $('.readPersediaan').click(function() {
-            readPersediaan();
-        });
-        $('.addPersediaan').click(function() {
-            addPersediaan();
-        });
     </script>
 
 </body>

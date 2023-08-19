@@ -54,6 +54,47 @@ class PersediaanController extends BaseController
         }
     }
 
+    public function addMultiplePersediaan()
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        $BarangModel = new BarangModel();
+        if ($this->request->isAJAX()) {
+            $datas = [
+                'barangs' => $BarangModel->findAll()
+            ];
+            $msg = [
+                'data' => view('persediaan/add-multiple', $datas)
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Oops, Something went wrong');
+        }
+    }
+
+    public function saveMultiplePersediaan()
+    {
+        if ($this->request->isAJAX()) {
+            $PersediaanModel = new PersediaanModel();
+            $id_barang = $this->request->getVar('id_barang');
+            $jumlah = $this->request->getVar('jumlah');
+
+            $jumlahData = count($id_barang);
+
+            for ($i = 0; $i < $jumlahData; $i++) {
+                $PersediaanModel->insert([
+                    'id_barang' => $id_barang[$i],
+                    'jumlah' => $jumlah[$i],
+                ]);
+            }
+            $msg = [
+                'success' => "$jumlahData Berhasil di simpan"
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Oops, Something went wrong');
+        }
+    }
+
     public function savePersediaan()
     {
         if ($this->request->isAJAX()) {
@@ -100,5 +141,13 @@ class PersediaanController extends BaseController
         } else {
             exit('Oops, Something went wrong');
         }
+    }
+
+    public function deletePersediaan($id_persediaan)
+    {
+        $PersediaanModel = new PersediaanModel();
+        $PersediaanModel->delete($id_persediaan);
+
+        return $this->response->setJSON(['success' => true]);
     }
 }

@@ -24,7 +24,7 @@
                     <td><?= $barang['nama_barang'] ?></td>
                     <td><?= $barang['jenis_barang'] ?></td>
                     <td class="text-center">
-                        <button type="button" class="btn btn-circle btn-sm btn-danger deleteBarang" data-id_barang="<?= $barang['id_barang'] ?>"><i class="fa fa-trash"></i></button>
+                        <button type="button" class="btn btn-circle btn-sm btn-danger deleteBarang" data-kode_barang="<?= $barang['kode_barang'] ?>" data-id_barang="<?= $barang['id_barang'] ?>"><i class="fa fa-trash"></i></button>
                         <!-- <button type="button" class="btn btn-circle btn-sm btn-info editBarang" data-id_barang="<?= $barang['id_barang'] ?>" data-kode_barang="<?= $barang['kode_barang'] ?>"><i class="fa fa-pencil"></i></button> -->
                     </td>
                 </tr>
@@ -40,11 +40,12 @@
         // HAPUS BARANG SATUAN
         $('.deleteBarang').click(function() {
             var id_barang = $(this).data('id_barang');
+            var kode_barang = $(this).data('kode_barang');
             var urlDelete = "<?= site_url('barang/deleteBarang/'); ?>" + id_barang;
 
             Swal.fire({
                 title: 'Anda yakin?',
-                text: `Anda akan menghapus Data`,
+                text: `Anda akan menghapus ${kode_barang}`,
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',

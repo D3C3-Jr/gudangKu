@@ -39,6 +39,8 @@ $routes->get('/supplier/addSupplier', 'SupplierController::addSupplier');
 $routes->get('/supplier/addMultipleSupplier', 'SupplierController::addMultipleSupplier');
 $routes->post('/supplier/saveSupplier', 'SupplierController::saveSupplier');
 $routes->post('supplier/saveMultipleSupplier', 'SupplierController::saveMultipleSupplier');
+$routes->get('supplier/deleteMultipleSupplier', 'SupplierController::deleteMultipleSupplier');
+$routes->delete('supplier/deleteSupplier/(:num)', 'SupplierController::deleteSupplier/$1');
 
 $routes->get('/barang', 'BarangController::index');
 $routes->get('/barang/readBarang', 'BarangController::readBarang');
@@ -64,6 +66,9 @@ $routes->get('/persediaan', 'PersediaanController::index');
 $routes->get('/persediaan/readPersediaan', 'PersediaanController::readPersediaan');
 $routes->get('/persediaan/addPersediaan', 'PersediaanController::addPersediaan');
 $routes->post('/persediaan/savePersediaan', 'PersediaanController::savePersediaan');
+$routes->get('persediaan/addMultiplePersediaan', 'PersediaanController::addMultiplePersediaan');
+$routes->post('persediaan/saveMultiplePersediaan', 'PersediaanController::saveMultiplePersediaan');
+$routes->delete('persediaan/deletePersediaan/(:num)', 'PersediaanController::deletePersediaan/$1');
 /*
  * --------------------------------------------------------------------
  * Additional Routing
