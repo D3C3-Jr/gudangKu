@@ -42,7 +42,21 @@ class PersediaanModel extends Model
     public function getPersediaan()
     {
         $PersediaanModel = new PersediaanModel();
-        $data = $PersediaanModel->join('barang', 'persediaan.id_barang = barang.id_barang', 'left')->where('jumlah >', '0')->find();
+        $data = $PersediaanModel->join('barang', 'persediaan.id_barang = barang.id_barang', 'left')->where('jumlah >=', '0')->find();
+        return $data;
+    }
+
+    public function getPersediaanTerbanyak()
+    {
+        $PersediaanModel = new PersediaanModel();
+        $data = $PersediaanModel->join('barang', 'persediaan.id_barang = barang.id_barang', 'left')->where('jumlah >=', '100')->find();
+        return $data;
+    }
+
+    public function getPersediaanTerkecil()
+    {
+        $PersediaanModel = new PersediaanModel();
+        $data = $PersediaanModel->join('barang', 'persediaan.id_barang = barang.id_barang', 'left')->where('jumlah <=', '30')->find();
         return $data;
     }
 }
