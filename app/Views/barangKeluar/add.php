@@ -36,16 +36,6 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="stok" class="col-sm-3 col-form-label col-form-label-sm">Stok</label>
-                    <div class="col-sm-9">
-                        <p class="stok" id="stok"></p>
-                        <!-- ERROR FEEDBACK -->
-                        <div id="error_jumlah" class="invalid-feedback error_jumlah">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group row">
                     <label for="jumlah" class="col-sm-3 col-form-label col-form-label-sm">Jumlah</label>
                     <div class="col-sm-9">
                         <input type="text" name="jumlah" class="form-control form-control-sm" id="jumlah" placeholder="Jumlah">
@@ -81,28 +71,6 @@
 <script>
     $(document).ready(function() {
         $('#id_barang').select2();
-
-        $('#id_barang').change(function() {
-            // alert("Berhasil");
-            var id_barang = $(this).val();
-
-            $.ajax({
-                url: '<?= base_url() ?>/barangKeluar/getStok',
-                method: 'POST',
-                data: {
-                    id_barang: id_barang
-                },
-                dataType: 'json',
-                success: function(response) {
-                    // $('#sel_depart').find('option').not(':first').remove();
-
-                    $.each(response, function(index, data) {
-                        $("#stok").append(data['jumlah']);
-                        // $("#stok").remove();
-                    })
-                }
-            });
-        });
 
         $('.saveBarangKeluar').submit(function(e) {
             e.preventDefault();

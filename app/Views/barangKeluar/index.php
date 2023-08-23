@@ -7,9 +7,9 @@
         <!-- Dropdown Card Example -->
         <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
-            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <button class="btn btn-primary readBarangKeluar">Lihat Data</button>
-                <button class="btn btn-primary addBarangKeluar" hidden>Tambah Data</button>
+            <div class="card-header pb-0 align-items-center justify-content-between">
+                <button class="btn btn-primary btn-sm mb-2 readBarangKeluar"><i class="fa fa-arrows-rotate"></i></button>
+                <button class="btn btn-primary btn-sm mb-2 addBarangKeluar"><i class="fa fa-plus"></i></button>
             </div>
             <!-- Card Body -->
             <div class="card-body">
@@ -21,6 +21,16 @@
 <div class="addModalBarangKeluar" style="display:none"></div>
 
 <script>
+    $(document).ready(function() {
+        readBarangKeluar();
+        $('.readBarangKeluar').click(function() {
+            readBarangKeluar();
+        });
+        $('.addBarangKeluar').click(function() {
+            addBarangKeluar();
+        });
+    })
+
     function readBarangKeluar() {
         $.ajax({
             url: "<?= site_url('barangKeluar/readBarangKeluar'); ?>",

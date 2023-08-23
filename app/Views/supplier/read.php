@@ -10,7 +10,7 @@
                 <th>No Telp</th>
                 <th>Email</th>
                 <th>Jenis Supplier</th>
-                <th width="55px">Action</th>
+                <th width="55px" class="text-center">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -25,9 +25,9 @@
                     <td><?= $supplier['telp'] ?></td>
                     <td><?= $supplier['email'] ?></td>
                     <td><?= $supplier['jenis_supplier'] ?></td>
-                    <td width="55px">
-                        <a href="" class="btn btn-circle btn-sm btn-primary"><i class="fas fa-edit"></i></a>
-                        <a href="" class="btn btn-circle btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                    <td width="55px" class="text-center">
+                        <!-- <a href="" class="btn btn-circle btn-sm btn-primary"><i class="fas fa-edit"></i></a> -->
+                        <button type="button" class="btn btn-circle btn-sm btn-danger deleteSupplier" data-kode_supplier="<?= $supplier['kode_supplier'] ?>" data-id_supplier="<?= $supplier['id_supplier'] ?>"><i class="fa fa-trash"></i></button>
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -37,8 +37,43 @@
 
 <script>
     $(document).ready(function() {
-        $('#dataTable').DataTable({
+        $('.deleteSupplier').click(function() {
+            var id_supplier = $(this).data('id_supplier');
+            var kode_supplier = $(this).data('kode_supplier');
+            var urlDelete = "<?= site_url('supplier/deleteSupplier/'); ?>" + id_supplier;
 
+            Swal.fire({
+                title: 'Anda yakin?',
+                text: `Anda akan menghapus ${kode_supplier}`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: urlDelete,
+                        type: 'DELETE',
+                        success: function(response) {
+                            if (response.success) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Berhasil',
+                                    text: `Data berhasil di hapus`,
+                                })
+                                readSuppliers();
+                            }
+                        },
+                        error: function(xhr, ajaxOptions, thrownError) {
+                            alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+                        }
+                    });
+                }
+            })
+        });
+
+        $('#dataTable').DataTable({
             dom: 'Bfrtip',
             buttons: [{
                     extend: 'excel',
