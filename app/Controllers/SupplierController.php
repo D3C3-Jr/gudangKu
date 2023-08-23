@@ -180,4 +180,12 @@ class SupplierController extends BaseController
             exit('Oops, Something went wrong');
         }
     }
+
+    public function deleteSupplier($id_supplier)
+    {
+        $SupplierModel = new SupplierModel();
+        $SupplierModel->delete($id_supplier);
+
+        return $this->response->setJSON(['success' => true]);
+    }
 }

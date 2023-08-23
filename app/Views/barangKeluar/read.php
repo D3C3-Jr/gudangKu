@@ -43,7 +43,7 @@
             dom: 'Bfrtip',
             buttons: [{
                     extend: 'excel',
-                    text: '<i class="far fa-file-excel" aria-hidden="true"></i> Excel Export',
+                    text: '<i class="far fa-file-excel" aria-hidden="true"></i> Excel',
                     filename: 'Barang Keluar',
                     title: 'Data Barang Keluar',
                     exportOptions: {

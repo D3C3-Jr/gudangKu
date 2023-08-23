@@ -200,20 +200,6 @@
 
     <script>
         $(".preloader").fadeOut("slow");
-
-        $('.readBarangMasuk').click(function() {
-            readBarangMasuk();
-        });
-        $('.addBarangMasuk').click(function() {
-            addBarangMasuk();
-        });
-
-        $('.readBarangKeluar').click(function() {
-            readBarangKeluar();
-        });
-        $('.addBarangKeluar').click(function() {
-            addBarangKeluar();
-        });
     </script>
 
 </body>

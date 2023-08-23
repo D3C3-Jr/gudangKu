@@ -1,10 +1,10 @@
 <?= form_open('barang/deleteMultipleBarang', ['class' => 'deleteMultipleBarang']); ?>
-<button type="submit" class="btn btn-danger btn-sm mb-2 deleteMultipleBarang" hidden>Hapus Banyak Data</button>
+<!-- <button type="submit" class="btn btn-danger btn-sm mb-2 deleteMultipleBarang" hidden>Hapus Banyak Data</button> -->
 <div class="table-responsive">
     <table class="table table-hover table-bordered table-sm" id="dataTable" width="100%" cellspacing="0" style="font-size: small;">
         <thead style="background-color: grey;color:white">
             <tr>
-                <th><input type="checkbox" id="selectAll"></th>
+                <!-- <th><input type="checkbox" id="selectAll"></th> -->
                 <th width="5px">No</th>
                 <th>Kode Barang</th>
                 <th>Supplier</th>
@@ -17,7 +17,7 @@
             <?php $no = 1;
             foreach ($barangs as $barang) : ?>
                 <tr>
-                    <td width="5px"><input type="checkbox" class="checkbox" name="id_barang[]" id="kode_barang" value="<?= $barang['id_barang'] ?>"></td>
+                    <!-- <td width="5px"><input type="checkbox" class="checkbox" name="id_barang[]" id="kode_barang" value="<?= $barang['id_barang'] ?>"></td> -->
                     <td width="5px"><?= $no++ ?></td>
                     <td><?= $barang['kode_barang'] ?></td>
                     <td><?= $barang['nama_supplier'] ?></td>
