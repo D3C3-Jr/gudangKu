@@ -20,7 +20,9 @@ class HomeController extends BaseController
         $Supplier = new SupplierModel();
 
         $datas = [
-            'persediaans' => $Persediaan->countAllResults(),
+            'persediaans' => $Persediaan->getPersediaan(),
+            'persediaanTerbanyak' => $Persediaan->getPersediaanTerbanyak(),
+            'persediaanTerkecil' => $Persediaan->getPersediaanTerkecil(),
             'barangs' => $Barang->countAllResults(),
             'suppliers' => $Supplier->countAllResults(),
             'title' => 'Home',

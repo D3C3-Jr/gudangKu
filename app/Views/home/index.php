@@ -41,4 +41,55 @@
 
 </div>
 
+<div class="row">
+    <div class="col-xl-6 col-lg-6">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Stok Terbanyak</h6>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+                <table class="table table-sm">
+                    <thead>
+                        <th>Nama Barang</th>
+                        <th>Stok</th>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($persediaanTerbanyak as $persediaan) : ?>
+                            <tr>
+                                <td><?= $persediaan['nama_barang'] ?></td>
+                                <td><?= $persediaan['jumlah'] ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6 col-lg-6">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Stok Terkecil</h6>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+                <table class="table table-sm">
+                    <thead>
+                        <th>Nama Barang</th>
+                        <th>Stok</th>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($persediaanTerkecil as $persediaan) : ?>
+                            <tr>
+                                <td><?= $persediaan['nama_barang'] ?></td>
+                                <td><?= $persediaan['jumlah'] ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
 <?= $this->endSection(); ?>
