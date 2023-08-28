@@ -75,7 +75,13 @@
 
         $('#dataTable').DataTable({
             dom: 'Bfrtip',
-            buttons: [{
+            buttons: [
+                {
+                    extend: 'pageLength',
+                    text: '<i class="fas fa-file" aria-hidden="true"></i> Page',
+                    
+                },
+                {
                     extend: 'excel',
                     text: '<i class="far fa-file-excel" aria-hidden="true"></i> Excel',
                     filename: 'Suppliers',
@@ -105,6 +111,8 @@
                 },
             ],
             responsive: true,
+            scrollY: 200,
+
         });
     });
 </script>
