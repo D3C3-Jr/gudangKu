@@ -94,7 +94,13 @@
                 footer: true
             },
             dom: 'Bfrtip',
-            buttons: [{
+            buttons: [
+                {
+                    extend: 'pageLength',
+                    text: '<i class="fas fa-file" aria-hidden="true"></i> Page',
+                    
+                },
+                {
                     extend: 'excel',
                     text: '<i class="far fa-file-excel" aria-hidden="true"></i> Excel Export',
                     filename: 'Persediaan',
@@ -127,7 +133,7 @@
             paging: false,
             scrollCollapse: true,
             scrollX: true,
-            scrollY: 400
+            scrollY: 200
         });
     });
 </script>

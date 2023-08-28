@@ -3,11 +3,11 @@
         <thead style="background-color: grey;color:white">
             <tr>
                 <th>No</th>
+                <th>Tanggal</th>
                 <th>Kode Transaksi</th>
                 <th>Kode Barang</th>
                 <th>Nama Barang</th>
                 <th>Jenis Barang</th>
-                <th>Tanggal</th>
                 <th>Jumlah</th>
                 <th>Action</th>
             </tr>
@@ -17,11 +17,11 @@
             foreach ($barangKeluars as $barangKeluar) : ?>
                 <tr>
                     <td><?= $no++ ?></td>
+                    <td><?= date('Y-m-d', strtotime($barangKeluar['tanggal'])) ?></td>
                     <td><?= $barangKeluar['kode_barang_keluar'] ?></td>
                     <td><?= $barangKeluar['kode_barang'] ?></td>
                     <td><?= $barangKeluar['nama_barang'] ?></td>
                     <td><?= $barangKeluar['jenis_barang'] ?></td>
-                    <td><?= date('Y-m-d', strtotime($barangKeluar['tanggal'])) ?></td>
                     <td><?= $barangKeluar['jumlah'] ?></td>
                     <td>
                         <a href="" class="btn btn-circle btn-sm btn-primary"><i class="fas fa-edit"></i></a>
@@ -41,7 +41,13 @@
                 footer: true
             },
             dom: 'Bfrtip',
-            buttons: [{
+            buttons: [
+                {
+                    extend: 'pageLength',
+                    text: '<i class="fas fa-file" aria-hidden="true"></i> Page',
+                    
+                },
+                {
                     extend: 'excel',
                     text: '<i class="far fa-file-excel" aria-hidden="true"></i> Excel',
                     filename: 'Barang Keluar',
@@ -74,7 +80,7 @@
             paging: false,
             scrollCollapse: true,
             scrollX: true,
-            scrollY: 400
+            scrollY: 200
         });
     });
 </script>

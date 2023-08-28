@@ -133,7 +133,13 @@
         $('#dataTable').DataTable({
             responsive: true,
             dom: 'Bfrtip',
-            buttons: [{
+            buttons: [
+                {
+                    extend: 'pageLength',
+                    text: '<i class="fas fa-file" aria-hidden="true"></i> Page',
+                    
+                },
+                {
                     extend: 'excel',
                     text: '<i class="far fa-file-excel" aria-hidden="true"></i> Excel',
                     filename: 'Barang',
@@ -165,7 +171,7 @@
             // paging: true,
             // scrollCollapse: false,
             // scrollX: false,
-            // scrollY: 400
+            scrollY: 200
         });
 
     });
