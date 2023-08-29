@@ -72,13 +72,13 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="jenis_supplier" class="col-sm-2 col-form-label col-form-label-sm">Jenis</label>
+                    <label for="id_jenis_supplier" class="col-sm-2 col-form-label col-form-label-sm">Jenis</label>
                     <div class="col-sm-10">
-                        <select class="form-control form-control-sm" name="jenis_supplier" id="jenis_supplier">
+                        <select class="form-control form-control-sm" name="id_jenis_supplier" id="id_jenis_supplier">
                             <option selected hidden>Pilih Jenis Supplier</option>
-                            <option value="Barang">Barang</option>
-                            <option value="Jasa">Jasa</option>
-                            <option value="Barang & Jasa">Barang & Jasa</option>
+                            <?php foreach ($jenis_suppliers as $jenis_supplier) : ?>
+                                <option value="<?= $jenis_supplier['id_jenis_supplier'] ?>"><?= $jenis_supplier['jenis_supplier'] ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                 </div>

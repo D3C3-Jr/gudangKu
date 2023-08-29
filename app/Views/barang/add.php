@@ -49,11 +49,11 @@
                 <div class="form-group row">
                     <label for="jenis_barang" class="col-sm-2 col-form-label col-form-label-sm">Jenis</label>
                     <div class="col-sm-10">
-                        <select class="form-control form-control-sm" name="jenis_barang" id="jenis_barang">
+                        <select class="form-control form-control-sm" name="id_jenis_barang" id="id_jenis_barang">
                             <option selected hidden disabled>Pilih Jenis Barang</option>
-                            <option value="Mentah">Mentah</option>
-                            <option value="Setengah Jadi">Setengah Jadi</option>
-                            <option value="Jadi">Jadi</option>
+                            <?php foreach ($jenis_barangs as $jenis_barang) : ?>
+                                <option value="<?= $jenis_barang['id_jenis_barang'] ?>"><?= $jenis_barang['jenis_barang'] ?></option>
+                            <?php endforeach; ?>
                         </select>
                         <!-- ERROR FEEDBACK -->
                         <div id="error_jenis_barang" class="invalid-feedback error_jenis_barang">
@@ -114,12 +114,12 @@
                             $('.error_id_supplier').html();
                         };
 
-                        if (response.error.jenis_barang) {
-                            $('#jenis_barang').addClass('is-invalid');
-                            $('.error_jenis_barang').html(response.error.jenis_barang);
+                        if (response.error.id_jenis_barang) {
+                            $('#id_jenis_barang').addClass('is-invalid');
+                            $('.error_id_jenis_barang').html(response.error.id_jenis_barang);
                         } else {
-                            $('#jenis_barang').removeClass('is-invalid');
-                            $('.error_jenis_barang').html();
+                            $('#id_jenis_barang').removeClass('is-invalid');
+                            $('.error_id_jenis_barang').html();
                         };
 
                     } else {

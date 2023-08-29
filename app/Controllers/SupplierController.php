@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\SupplierModel;
+use App\Models\JenisSupplierModel;
 
 class SupplierController extends BaseController
 {
@@ -24,7 +25,7 @@ class SupplierController extends BaseController
             $SupplierModel = new \App\Models\SupplierModel();
             $data = [
                 'title' => 'Data Supplier',
-                'suppliers' => $SupplierModel->findAll()
+                'suppliers' => $SupplierModel->getSupplier(),
             ];
             $msg = [
                 'data' => view('supplier/read', $data)
@@ -37,9 +38,15 @@ class SupplierController extends BaseController
 
     public function addSupplier()
     {
+
+
         if ($this->request->isAJAX()) {
+            $JenisSupplierModel = new JenisSupplierModel();
+            $datas = [
+                'jenis_suppliers' => $JenisSupplierModel->findAll(),
+            ];
             $msg = [
-                'data' => view('supplier/add')
+                'data' => view('supplier/add', $datas)
             ];
             echo json_encode($msg);
         } else {
@@ -49,9 +56,13 @@ class SupplierController extends BaseController
 
     public function addMultipleSupplier()
     {
+        $JenisSupplierModel = new JenisSupplierModel();
         if ($this->request->isAJAX()) {
+            $datas = [
+                'jenis_suppliers' => $JenisSupplierModel->findAll(),
+            ];
             $msg = [
-                'data' => view('supplier/add-multiple')
+                'data' => view('supplier/add-multiple', $datas)
             ];
             echo json_encode($msg);
         } else {
@@ -132,7 +143,7 @@ class SupplierController extends BaseController
                     'kota' => $this->request->getVar('kota'),
                     'telp' => $this->request->getVar('telp'),
                     'email' => $this->request->getVar('email'),
-                    'jenis_supplier' => $this->request->getVar('jenis_supplier'),
+                    'id_jenis_supplier' => $this->request->getVar('id_jenis_supplier'),
                 ];
                 $supplier = new SupplierModel();
                 $supplier->insert($save);
@@ -157,7 +168,7 @@ class SupplierController extends BaseController
             $kota = $this->request->getVar('kota');
             $telp = $this->request->getVar('telp');
             $email = $this->request->getVar('email');
-            $jenis_supplier = $this->request->getVar('jenis_supplier');
+            $id_jenis_supplier = $this->request->getVar('id_jenis_supplier');
 
             $jumlahData = count($kode_supplier);
 
@@ -169,7 +180,7 @@ class SupplierController extends BaseController
                     'kota'              => $kota[$i],
                     'telp'              => $telp[$i],
                     'email'             => $email[$i],
-                    'jenis_supplier'    => $jenis_supplier[$i],
+                    'id_jenis_supplier'    => $id_jenis_supplier[$i],
                 ]);
             }
             $msg = [

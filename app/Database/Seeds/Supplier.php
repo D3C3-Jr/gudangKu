@@ -16,15 +16,15 @@ class Supplier extends Seeder
         for ($i = 0; $i < 500; $i++) {
             $suppliers->save(
                 [
-                    'kode_supplier'        =>    $faker->randomNumber(7, true),
-                    'nama_supplier'       =>    $faker->company(),
-                    'alamat'    =>    $faker->streetAddress(),
-                    'kota'       =>    $faker->city(),
-                    'telp'     =>    $faker->phoneNumber(),
-                    'email'     =>    $faker->companyEmail(),
-                    'jenis_supplier'     =>    $faker->word(),
-                    'created_at'  =>    Time::createFromTimestamp($faker->unixTime()),
-                    'updated_at'  =>    Time::now()
+                    'kode_supplier'     =>    $faker->randomNumber(7, true),
+                    'nama_supplier'     =>    $faker->company(),
+                    'alamat'            =>    $faker->streetAddress(),
+                    'kota'              =>    $faker->city(),
+                    'telp'              =>    $faker->phoneNumber(),
+                    'email'             =>    $faker->companyEmail(),
+                    'id_jenis_supplier' =>    "2",
+                    'created_at'        =>    Time::createFromTimestamp($faker->unixTime()),
+                    'updated_at'        =>    Time::now()
                 ]
             );
         }

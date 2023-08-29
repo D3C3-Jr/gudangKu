@@ -33,11 +33,11 @@
                             <td><input type="text" name="telp[]" class="form-control form-control-sm"></td>
                             <td><input type="text" name="email[]" class="form-control form-control-sm"></td>
                             <td>
-                                <select class="form-control form-control-sm" name="jenis_supplier[]" id="jenis_supplier">
+                                <select class="form-control form-control-sm" name="id_jenis_supplier[]" id="id_jenis_supplier">
                                     <option selected hidden>Pilih Jenis Supplier</option>
-                                    <option value="Barang">Barang</option>
-                                    <option value="Jasa">Jasa</option>
-                                    <option value="Barang & Jasa">Barang & Jasa</option>
+                                    <?php foreach ($jenis_suppliers as $jenis_supplier) : ?>
+                                        <option value="<?= $jenis_supplier['id_jenis_supplier'] ?>"><?= $jenis_supplier['jenis_supplier'] ?></option>
+                                    <?php endforeach; ?>
                                 </select>
                             </td>
                             <td><button type="button" id="tambahField" class="btn btn-sm btn-info"><i class="fa fa-plus"></i></button></td>
@@ -68,11 +68,11 @@
                 <td><input type="text" name="telp[]" class="form-control form-control-sm"></td>
                 <td><input type="text" name="email[]" class="form-control form-control-sm"></td>
                 <td>
-                    <select class="form-control form-control-sm" name="jenis_supplier[]" id="jenis_supplier">
+                    <select class="form-control form-control-sm" name="id_jenis_supplier[]" id="id_jenis_supplier">
                         <option selected hidden>Pilih Jenis Supplier</option>
-                        <option value="Barang">Barang</option>
-                        <option value="Jasa">Jasa</option>
-                        <option value="Barang & Jasa">Barang & Jasa</option>
+                        <?php foreach ($jenis_suppliers as $jenis_supplier) : ?>
+                            <option value="<?= $jenis_supplier['id_jenis_supplier'] ?>"><?= $jenis_supplier['jenis_supplier'] ?></option>
+                        <?php endforeach; ?>
                     </select>
                 </td>
                 <td><button type="button" id="hapusField" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button></td>

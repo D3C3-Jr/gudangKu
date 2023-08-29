@@ -5,7 +5,7 @@
 <div class="row">
     <div class="col-lg-12">
         <!-- Dropdown Card Example -->
-        <div class="card shadow mb-4">
+        <div class="card shadow mb-2">
             <!-- Card Header - Dropdown -->
             <div class="card-header pb-0 align-items-center justify-content-between">
                 <button class="btn btn-primary btn-sm mb-2 readSupplier"><i class="fa fa-arrows-rotate"></i></button>

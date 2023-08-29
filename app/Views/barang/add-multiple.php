@@ -35,11 +35,11 @@
                             </td>
                             <td><input type="text" name="nama_barang[]" class="form-control form-control-sm"></td>
                             <td>
-                                <select class="form-control form-control-sm" name="jenis_barang[]" id="jenis_barang">
+                                <select class="form-control form-control-sm" name="id_jenis_barang[]" id="id_jenis_barang">
                                     <option selected hidden disabled>Pilih Jenis Barang</option>
-                                    <option value="Mentah">Mentah</option>
-                                    <option value="Setengah Jadi">Setengah Jadi</option>
-                                    <option value="Jadi">Jadi</option>
+                                    <?php foreach ($jenis_barangs as $jenis_barang) : ?>
+                                        <option value="<?= $jenis_barang['id_jenis_barang'] ?>"><?= $jenis_barang['jenis_barang'] ?></option>
+                                    <?php endforeach; ?>
                                 </select>
                             </td>
                             <td><button type="button" id="tambahField" class="btn btn-sm btn-info"><i class="fa fa-plus"></i></button></td>
@@ -77,11 +77,11 @@
                 </td>
                 <td><input type="text" name="nama_barang[]" class="form-control form-control-sm"></td>
                 <td>
-                    <select class="form-control form-control-sm" name="jenis_barang[]" id="jenis_barang">
+                    <select class="form-control form-control-sm" name="id_jenis_barang[]" id="id_jenis_barang">
                         <option selected hidden disabled>Pilih Jenis Barang</option>
-                        <option value="Mentah">Mentah</option>
-                        <option value="Setengah Jadi">Setengah Jadi</option>
-                        <option value="Jadi">Jadi</option>
+                        <?php foreach ($jenis_barangs as $jenis_barang) : ?>
+                            <option value="<?= $jenis_barang['id_jenis_barang'] ?>"><?= $jenis_barang['jenis_barang'] ?></option>
+                        <?php endforeach; ?>
                     </select>
                 </td>
                 <td><button type="button" id="hapusField" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button></td>

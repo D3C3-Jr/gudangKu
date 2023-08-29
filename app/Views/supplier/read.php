@@ -74,25 +74,21 @@
         });
 
         $('#dataTable').DataTable({
-            dom: 'Bfrtip',
-            buttons: [
-                {
-                    extend: 'pageLength',
-                    text: '<i class="fas fa-file" aria-hidden="true"></i> Page',
-                    
-                },
-                {
+            dom: "<'row'<'col-sm-3'l><'col-sm-6 text-center'B><'col-sm-3'f>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+            buttons: [{
                     extend: 'excel',
                     text: '<i class="far fa-file-excel" aria-hidden="true"></i> Excel',
                     filename: 'Suppliers',
                     title: 'Data Suppliers',
+                    columns: [0, 1, 2, 3, 4, 5, 6, 7],
                     exportOptions: {
                         // modifier: {
                         //     search: 'applied',
                         //     order: 'applied',
                         //     page: 'current'
                         // },
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7]
                     }
                 },
                 {
@@ -101,17 +97,17 @@
                     filename: 'Suppliers',
                     title: 'Data Suppliers',
                     exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7],
                         // modifier: {
                         //     search: 'applied',
                         //     order: 'applied',
                         //     page: 'current'
                         // },
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7]
                     }
                 },
             ],
             responsive: true,
-            scrollY: 200,
+            scrollY: 300,
 
         });
     });
