@@ -3,13 +3,16 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Database\Migrations\JenisBarang;
 use App\Models\BarangModel;
 use App\Models\SupplierModel;
+use App\Models\JenisBarangModel;
 
 class BarangController extends BaseController
 {
     protected $BarangModel;
     protected $SupplierModel;
+    protected $JenisBarangModel;
 
     public function index()
     {
@@ -41,9 +44,11 @@ class BarangController extends BaseController
     {
         date_default_timezone_set('Asia/Jakarta');
         $SupplierModel = new SupplierModel();
+        $JenisBarangModel = new JenisBarangModel();
         if ($this->request->isAJAX()) {
             $datas = [
-                'suppliers' => $SupplierModel->findAll()
+                'suppliers' => $SupplierModel->findAll(),
+                'jenis_barangs' => $JenisBarangModel->findAll(),
             ];
             $msg = [
                 'data' => view('barang/add', $datas)
@@ -58,9 +63,11 @@ class BarangController extends BaseController
     {
         date_default_timezone_set('Asia/Jakarta');
         $SupplierModel = new SupplierModel();
+        $JenisBarangModel = new JenisBarangModel();
         if ($this->request->isAJAX()) {
             $datas = [
-                'suppliers' => $SupplierModel->findAll()
+                'suppliers' => $SupplierModel->findAll(),
+                'jenis_barangs' => $JenisBarangModel->findAll(),
             ];
             $msg = [
                 'data' => view('barang/add-multiple', $datas)
@@ -101,7 +108,7 @@ class BarangController extends BaseController
                     ]
                 ],
 
-                'jenis_barang' => [
+                'id_jenis_barang' => [
                     'label' => 'Jenis Barang',
                     'rules' => 'required',
                     'errors' => [
@@ -116,7 +123,7 @@ class BarangController extends BaseController
                         'nama_barang' => $validation->getError('nama_barang'),
                         'id_supplier' => $validation->getError('id_supplier'),
                         'kode_barangg' => $validation->getError('kode_barangg'),
-                        'jenis_barang' => $validation->getError('jenis_barang'),
+                        'id_jenis_barang' => $validation->getError('id_jenis_barang'),
                     ]
                 ];
             } else {
@@ -124,7 +131,7 @@ class BarangController extends BaseController
                     'kode_barang' => $this->request->getVar('kode_barangg'),
                     'id_supplier' => $this->request->getVar('id_supplier'),
                     'nama_barang' => $this->request->getVar('nama_barang'),
-                    'jenis_barang' => $this->request->getVar('jenis_barang'),
+                    'id_jenis_barang' => $this->request->getVar('id_jenis_barang'),
                 ];
                 $barang = new BarangModel();
                 $barang->insert($save);
@@ -145,7 +152,7 @@ class BarangController extends BaseController
             $kode_barang = $this->request->getVar('kode_barang');
             $id_supplier = $this->request->getVar('id_supplier');
             $nama_barang = $this->request->getVar('nama_barang');
-            $jenis_barang = $this->request->getVar('jenis_barang');
+            $id_jenis_barang = $this->request->getVar('id_jenis_barang');
 
             $jumlahData = count($kode_barang);
 
@@ -154,7 +161,7 @@ class BarangController extends BaseController
                     'kode_barang' => $kode_barang[$i],
                     'id_supplier' => $id_supplier[$i],
                     'nama_barang' => $nama_barang[$i],
-                    'jenis_barang' => $jenis_barang[$i],
+                    'id_jenis_barang' => $id_jenis_barang[$i],
                 ]);
             }
             $msg = [

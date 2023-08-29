@@ -89,20 +89,13 @@
         });
 
         $('#dataTable').DataTable({
-            fixedHeader: {
-                header: true,
-                footer: true
-            },
-            dom: 'Bfrtip',
-            buttons: [
-                {
-                    extend: 'pageLength',
-                    text: '<i class="fas fa-file" aria-hidden="true"></i> Page',
-                    
-                },
-                {
+
+            dom: "<'row'<'col-sm-3'l><'col-sm-6 text-center'B><'col-sm-3'f>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+            buttons: [{
                     extend: 'excel',
-                    text: '<i class="far fa-file-excel" aria-hidden="true"></i> Excel Export',
+                    text: '<i class="far fa-file-excel" aria-hidden="true"></i> Excel',
                     filename: 'Persediaan',
                     title: 'Data Persediaan',
                     exportOptions: {
@@ -129,11 +122,11 @@
                     }
                 },
             ],
-            responsive: true,
-            paging: false,
-            scrollCollapse: true,
-            scrollX: true,
-            scrollY: 200
+            // responsive: true,
+            // paging: false,
+            // scrollCollapse: true,
+            // scrollX: true,
+            // scrollY: 200
         });
     });
 </script>

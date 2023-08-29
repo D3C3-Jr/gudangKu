@@ -132,24 +132,20 @@
         // DATA TABLE
         $('#dataTable').DataTable({
             responsive: true,
-            dom: 'Bfrtip',
-            buttons: [
-                {
-                    extend: 'pageLength',
-                    text: '<i class="fas fa-file" aria-hidden="true"></i> Page',
-                    
-                },
-                {
+            dom: "<'row'<'col-sm-3'l><'col-sm-6 text-center'B><'col-sm-3'f>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+            buttons: [{
                     extend: 'excel',
                     text: '<i class="far fa-file-excel" aria-hidden="true"></i> Excel',
                     filename: 'Barang',
                     title: 'Data Barang',
                     exportOptions: {
-                        modifier: {
-                            search: 'applied',
-                            order: 'applied',
-                            page: 'current'
-                        },
+                        // modifier: {
+                        //     search: 'applied',
+                        //     order: 'applied',
+                        //     page: 'current'
+                        // },
                         columns: [0, 1, 2, 3, 4]
                     }
                 },
@@ -159,11 +155,11 @@
                     filename: 'Barang',
                     title: '<center>PT. TJFORGE INDONESIA <br> Data Barang<br><hr>',
                     exportOptions: {
-                        modifier: {
-                            search: 'applied',
-                            order: 'applied',
-                            page: 'current'
-                        },
+                        // modifier: {
+                        //     search: 'applied',
+                        //     order: 'applied',
+                        //     page: 'current'
+                        // },
                         columns: [0, 1, 2, 3, 4]
                     }
                 },

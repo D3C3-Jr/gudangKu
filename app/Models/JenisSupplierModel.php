@@ -4,16 +4,16 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class SupplierModel extends Model
+class JenisSupplierModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'suppliers';
-    protected $primaryKey       = 'id_supplier';
+    protected $table            = 'jenis_supplier';
+    protected $primaryKey       = 'id_jenis_supplier';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['kode_supplier', 'nama_supplier', 'id_jenis_supplier', 'alamat', 'kota', 'telp', 'email'];
+    protected $allowedFields    = ['jenis_supplier'];
 
     // Dates
     protected $useTimestamps = true;
@@ -22,10 +22,10 @@ class SupplierModel extends Model
     protected $updatedField  = 'updated_at';
     protected $deletedField  = 'deleted_at';
 
-    public function getSupplier()
+    public function getJenisSupplier()
     {
-        $SupplierModel = new SupplierModel();
-        $data = $SupplierModel->join('jenis_supplier', 'jenis_supplier.id_jenis_supplier = suppliers.id_jenis_supplier', 'left')->find();
+        $JenisSupplierModel = new JenisSupplierModel();
+        $data = $JenisSupplierModel->join('suppliers', 'jenis_supplier.id_jenis_supplier = suppliers.id_jenis_supplier', 'left')->find();
         return $data;
     }
 }
